@@ -4,6 +4,11 @@ By Patrick Gillespie
 http://patorjk.com/games/snake
 */
 
+
+var BOARD_STATE_GAME_INITIAL = 0;
+var BOARD_STATE_GAME_STARTING = 1;
+var BOARD_STATE_GAME_STARTED = 2;
+
 /**
 * @module Snake
 * @class SNAKE
@@ -208,10 +213,8 @@ SNAKE.Snake = SNAKE.Snake || (function() {
             var snakeLength = me.snakeLength;
             var lastMove = moveQueue[0] || currentDirection;
 
-            //console.log("lastmove="+lastMove);
-            //console.log("dir="+keyNum);
-            
             switch (keyNum) {
+
                 case 37:
                 case 65:
                     if ( lastMove !== 1 || snakeLength === 1 ) {
@@ -610,11 +613,10 @@ SNAKE.Board = SNAKE.Board || (function() {
             elmPauseScreen = document.createElement("div");
             elmPauseScreen.className = "snake-pause-screen";
             elmPauseScreen.innerHTML = "<div style='padding:10px;'>[Paused]<p/>Press [space] to unpause.</div>";
-            
+
             elmAboutPanel = document.createElement("div");
             elmAboutPanel.className = "snake-panel-component";
-            elmAboutPanel.innerHTML = "<a href='http://patorjk.com/blog/software/' class='snake-link'>more patorjk.com apps</a> - <a href='https://github.com/patorjk/JavaScript-Snake' class='snake-link'>source code</a>";
-            
+
             elmLengthPanel = document.createElement("div");
             elmLengthPanel.className = "snake-panel-component";
             elmLengthPanel.innerHTML = "Length: 1";
@@ -668,13 +670,14 @@ SNAKE.Board = SNAKE.Board || (function() {
             var loadGame = function() {
                 SNAKE.removeEventListener(window, "keyup", kbShortcut, false);
                 tmpElm.style.display = "none";
-                me.setBoardState(1);
+                me.setBoardState(BOARD_STATE_GAME_STARTING);
                 me.getBoardContainer().focus();
             };
             
             var kbShortcut = function(evt) {
                 if (!evt) var evt = window.event;
                 var keyNum = (evt.which) ? evt.which : evt.keyCode;
+                //32 = Space, 13 = Enter
                 if (keyNum === 32 || keyNum === 13) {
                     loadGame();
                 }
@@ -700,14 +703,15 @@ SNAKE.Board = SNAKE.Board || (function() {
             var reloadGame = function() {
                 tmpElm.style.display = "none";
                 me.resetBoard();
-                me.setBoardState(1);
+                me.setBoardState(BOARD_STATE_GAME_STARTING);
                 me.getBoardContainer().focus();
             };
             
             var kbTryAgainShortcut = function(evt) {
-                if (boardState !== 0 || tmpElm.style.display !== "block") {return;}
+                if (me.getBoardState() !== BOARD_STATE_INITIAL || tmpElm.style.display !== "block") {return;}
                 if (!evt) var evt = window.event;
                 var keyNum = (evt.which) ? evt.which : evt.keyCode;
+                //32 = Space, 13 = Enter
                 if (keyNum === 32 || keyNum === 13) {
                     reloadGame();
                 }
@@ -747,15 +751,14 @@ SNAKE.Board = SNAKE.Board || (function() {
             me.setupPlayingField();
         };
         /**
-        * Gets the current state of the playing board. There are 3 states: 0 - Welcome or Try Again dialog is present. 1 - User has pressed "Start Game" on the Welcome or Try Again dialog but has not pressed an arrow key to move the snake. 2 - The game is in progress and the snake is moving.
-        * @method getBoardState
+        * Gets the current state of the playing board. Use BOARD_STATE_GAME_INITIAL, BOARD_STATE_GAME_STARTING and BOARD_STATE_GAME_STARTED.
         * @return {Number} The state of the board.
-        */  
+        */
         me.getBoardState = function() {
             return boardState;
         };
         /**
-        * Sets the current state of the playing board. There are 3 states: 0 - Welcome or Try Again dialog is present. 1 - User has pressed "Start Game" on the Welcome or Try Again dialog but has not pressed an arrow key to move the snake. 2 - The game is in progress and the snake is moving.
+        * Sets the current state of the playing board. Use BOARD_STATE_GAME_INITIAL, BOARD_STATE_GAME_STARTING and BOARD_STATE_GAME_STARTED.
         * @method setBoardState
         * @param {Number} state The state of the board.
         */  
@@ -896,7 +899,7 @@ SNAKE.Board = SNAKE.Board || (function() {
                 if (!evt) var evt = window.event;
                 var keyNum = (evt.which) ? evt.which : evt.keyCode;
 
-                if (me.getBoardState() === 1) {
+                if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
                     if ( !(keyNum >= 37 && keyNum <= 40) && !(keyNum === 87 || keyNum === 65 || keyNum === 83 || keyNum === 68)) {return;} // if not an arrow key, leave
                     
                     // This removes the listener added at the #listenerX line
@@ -905,11 +908,10 @@ SNAKE.Board = SNAKE.Board || (function() {
                     myKeyListener = function(evt) {
                         if (!evt) var evt = window.event;
                         var keyNum = (evt.which) ? evt.which : evt.keyCode;
-                        
-                        //console.log(keyNum);
-                        if (keyNum === 32) {
-							if(me.getBoardState()!=0)
-                                me.setPaused(!me.getPaused());
+
+                        //32 = Enter
+                        if (keyNum === 32 && me.getBoardState() != BOARD_STATE_GAME_INITIAL) {
+                            me.setPaused(!me.getPaused());
                         }
                         
                         mySnake.handleArrowKeys(keyNum);
@@ -923,7 +925,7 @@ SNAKE.Board = SNAKE.Board || (function() {
                     
                     mySnake.rebirth();
                     mySnake.handleArrowKeys(keyNum);
-                    me.setBoardState(2); // start the game!
+                    me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                     mySnake.go();
                 }
                 
@@ -956,7 +958,7 @@ SNAKE.Board = SNAKE.Board || (function() {
             elmContainer.appendChild(elmTryAgain);
             elmTryAgain.style.zIndex = index;
             elmTryAgain.style.display = "block";
-            me.setBoardState(0);
+            me.setBoardState(BOARD_STATE_GAME_INITIAL);
         };
         
         // ---------------------------------------------------------------------
@@ -975,7 +977,7 @@ SNAKE.Board = SNAKE.Board || (function() {
             }, false);
         }
         
-        me.setBoardState(0);
+        me.setBoardState(BOARD_STATE_GAME_INITIAL);
         
         if (config.boardContainer) {
             me.setBoardContainer(config.boardContainer);
