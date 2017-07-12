@@ -251,6 +251,51 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 }
             };
 
+            me.handleDeviceOrientation = function(directionEvent){
+                if (isDead || isPaused) {
+                    return;
+                }
+
+                var snakeLength = me.snakeLength;
+                var lastMove = moveQueue[0] || currentDirection;
+
+                var orientationX = e.accelerationIncludingGravity.x;
+                var orientationY = e.accelerationIncludingGravity.y;
+
+                var absOrientationX = abs(orientationX);
+                var absOrientationY = abs(orientationY);
+
+                if (absOrientationX > 3 || absOrientationY > 3){
+                    if (absOrientationX > absOrientationY){
+                        // Up/Down movement
+                        if (orientationX > 0){
+                            if (lastMove !== SNAKE_DIRECTION_UP || snakeLength === 1) {
+                                moveQueue.unshift(SNAKE_DIRECTION_DOWN);
+                            }
+                        }else{
+                            if (lastMove !== SNAKE_DIRECTION_DOWN || snakeLength === 1) {
+                                moveQueue.unshift(SNAKE_DIRECTION_UP);
+                            }
+                        }
+                    }
+                    else{
+                        // Left/Right movement
+                        if (orientationY > 0){
+                            if (lastMove !== SNAKE_DIRECTION_LEFT || snakeLength === 1) {
+                                moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
+                            }
+                        }else{
+                            if (lastMove !== SNAKE_DIRECTION_RIGHT || snakeLength === 1) {
+                                moveQueue.unshift(SNAKE_DIRECTION_LEFT);
+                            }
+                        }
+                    }
+                }
+
+
+
+            }
+
             /**
              * This method is executed for each move of the snake. It determines where the snake will go and what will happen to it. This method needs to run quickly.
              * @method go
@@ -609,7 +654,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 GRID_FOOD_VALUE = -1, // the value of a spot on the board that represents snake food, MUST BE NEGATIVE
                 myFood,
                 mySnake,
-                boardState = 1, // 0: in active; 1: awaiting game start; 2: playing game
+                boardState = BOARD_STATE_GAME_STARTING,
                 myKeyListener,
                 isPaused = false,//note: both the board and the snake can be paused
                 // Board components

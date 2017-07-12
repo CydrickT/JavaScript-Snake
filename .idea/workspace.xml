@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efbe057a-091b-47cb-b970-d1be54d585da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/snake.js" afterPath="$PROJECT_DIR$/js/snake.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,10 +17,10 @@
       <file leaf-file-name="snake.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/snake.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4845">
-              <caret line="130" column="56" lean-forward="false" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="56" />
+            <state relative-caret-position="485">
+              <caret line="273" column="29" lean-forward="false" selection-start-line="273" selection-start-column="29" selection-end-line="273" selection-end-column="29" />
               <folding>
-                <marker date="1499884884707" expanded="true" signature="25513:25526" ph="..." />
+                <marker date="1499886970347" expanded="true" signature="27306:27319" ph="..." />
               </folding>
             </state>
           </provider>
@@ -44,7 +43,6 @@
       <find>down</find>
       <find>left</find>
       <find>32</find>
-      <find>handleArrowKeys</find>
       <find>getBoardState</find>
       <find>setBoardState</find>
       <find>set</find>
@@ -56,6 +54,8 @@
       <find>currentDirection</find>
       <find>direc</find>
       <find>lastMove</find>
+      <find>myKeyListener</find>
+      <find>handleArrowKeys</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -614,12 +614,12 @@
       <option name="presentableId" value="Default" />
       <updated>1499879325478</updated>
       <workItem from="1499879327078" duration="4651000" />
-      <workItem from="1499884397739" duration="543000" />
+      <workItem from="1499884397739" duration="2570000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5194000" />
+    <option name="totallyTimeSpent" value="7221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -671,7 +671,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1499884884707" expanded="true" signature="25513:25526" ph="..." />
+            <marker date="1499886970347" expanded="true" signature="27306:27319" ph="..." />
           </folding>
         </state>
       </provider>
@@ -701,10 +701,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/snake.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4845">
-          <caret line="130" column="56" lean-forward="false" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="56" />
+        <state relative-caret-position="485">
+          <caret line="273" column="29" lean-forward="false" selection-start-line="273" selection-start-column="29" selection-end-line="273" selection-end-column="29" />
           <folding>
-            <marker date="1499884884707" expanded="true" signature="25513:25526" ph="..." />
+            <marker date="1499886970347" expanded="true" signature="27306:27319" ph="..." />
           </folding>
         </state>
       </provider>
