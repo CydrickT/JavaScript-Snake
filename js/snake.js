@@ -9,6 +9,11 @@ var BOARD_STATE_GAME_INITIAL = 0;
 var BOARD_STATE_GAME_STARTING = 1;
 var BOARD_STATE_GAME_STARTED = 2;
 
+var SNAKE_DIRECTION_UP = 0;
+var SNAKE_DIRECTION_LEFT = 3;
+var SNAKE_DIRECTION_RIGHT = 1;
+var SNAKE_DIRECTION_DOWN = 2;
+
 /**
  * @module Snake
  * @class SNAKE
@@ -123,7 +128,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 myId = instanceNumber++,
                 growthIncr = 5,
                 moveQueue = [], // a queue that holds the next moves of the snake
-                currentDirection = 1, // 0: up, 1: left, 2: down, 3: right
+                currentDirection = SNAKE_DIRECTION_LEFT,
                 columnShift = [0, 1, 0, -1],
                 rowShift = [-1, 0, 1, 0],
                 xPosShift = [],
@@ -208,10 +213,6 @@ SNAKE.Snake = SNAKE.Snake || (function () {
              */
             /*
              Handles what happens when an arrow key is pressed.
-             Direction explained (0 = up, etc etc)
-             0
-             3   1
-             2
              */
             me.handleArrowKeys = function (keyNum) {
                 if (isDead || isPaused) {
@@ -225,26 +226,26 @@ SNAKE.Snake = SNAKE.Snake || (function () {
 
                     case 37:
                     case 65:
-                        if (lastMove !== 1 || snakeLength === 1) {
-                            moveQueue.unshift(3); //SnakeDirection = 3;
+                        if (lastMove !== SNAKE_DIRECTION_RIGHT || snakeLength === 1) {
+                            moveQueue.unshift(SNAKE_DIRECTION_LEFT);
                         }
                         break;
                     case 38:
                     case 87:
-                        if (lastMove !== 2 || snakeLength === 1) {
-                            moveQueue.unshift(0);//SnakeDirection = 0;
+                        if (lastMove !== SNAKE_DIRECTION_DOWN || snakeLength === 1) {
+                            moveQueue.unshift(SNAKE_DIRECTION_UP);
                         }
                         break;
                     case 39:
                     case 68:
-                        if (lastMove !== 3 || snakeLength === 1) {
-                            moveQueue.unshift(1); //SnakeDirection = 1;
+                        if (lastMove !== SNAKE_DIRECTION_LEFT || snakeLength === 1) {
+                            moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
                         }
                         break;
                     case 40:
                     case 83:
-                        if (lastMove !== 0 || snakeLength === 1) {
-                            moveQueue.unshift(2);//SnakeDirection = 2;
+                        if (lastMove !== SNAKE_DIRECTION_UP || snakeLength === 1) {
+                            moveQueue.unshift(SNAKE_DIRECTION_DOWN);
                         }
                         break;
                 }
