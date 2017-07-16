@@ -17,10 +17,10 @@
       <file leaf-file-name="snake.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/snake.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="685">
-              <caret line="1016" column="43" lean-forward="false" selection-start-line="1016" selection-start-column="43" selection-end-line="1016" selection-end-column="43" />
+            <state relative-caret-position="777">
+              <caret line="1057" column="37" lean-forward="false" selection-start-line="1057" selection-start-column="37" selection-end-line="1057" selection-end-column="37" />
               <folding>
-                <marker date="1500235003016" expanded="true" signature="27388:27401" ph="..." />
+                <marker date="1500248258444" expanded="true" signature="27388:27401" ph="..." />
               </folding>
             </state>
           </provider>
@@ -59,6 +59,7 @@
       <find>kbTryAgainShortcut</find>
       <find>addEventListener</find>
       <find>myKeyListener</find>
+      <find>BOARD_STATE_GAME_STARTED</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,6 +143,9 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Cydrick/Documents/GitRepositories/LOG530/JavaScript-Snake/index.html" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -559,6 +563,22 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="XSLT" factoryName="XSLT">
+      <option name="myOutputFile" />
+      <option name="myOpenOutputFile" value="false" />
+      <option name="myOpenInBrowser" value="false" />
+      <option name="mySmartErrorHandling" value="true" />
+      <option name="myRunnerPort" value="34873" />
+      <option name="myVmArguments" />
+      <option name="myWorkingDirectory" />
+      <option name="myModule" />
+      <option name="myJdk" />
+      <parameters />
+      <OutputType value="CONSOLE" save-to-file="false" />
+      <FileType name="XML" />
+      <JdkChoice value="FROM_MODULE" />
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -618,12 +638,12 @@
       <updated>1499879325478</updated>
       <workItem from="1499879327078" duration="4651000" />
       <workItem from="1499884397739" duration="2570000" />
-      <workItem from="1500230181539" duration="4759000" />
+      <workItem from="1500230181539" duration="6837000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11980000" />
+    <option name="totallyTimeSpent" value="14058000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -675,7 +695,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500235003016" expanded="true" signature="27388:27401" ph="..." />
+            <marker date="1500248258444" expanded="true" signature="27388:27401" ph="..." />
           </folding>
         </state>
       </provider>
@@ -693,7 +713,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500235003016" expanded="true" signature="27388:27401" ph="..." />
+            <marker date="1500248258444" expanded="true" signature="27388:27401" ph="..." />
           </folding>
         </state>
       </provider>
@@ -723,13 +743,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/snake.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="685">
-          <caret line="1016" column="43" lean-forward="false" selection-start-line="1016" selection-start-column="43" selection-end-line="1016" selection-end-column="43" />
+        <state relative-caret-position="777">
+          <caret line="1057" column="37" lean-forward="false" selection-start-line="1057" selection-start-column="37" selection-end-line="1057" selection-end-column="37" />
           <folding>
-            <marker date="1500235003016" expanded="true" signature="27388:27401" ph="..." />
+            <marker date="1500248258444" expanded="true" signature="27388:27401" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>JavaScript-Snake</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
