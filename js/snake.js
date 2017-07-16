@@ -1028,15 +1028,11 @@ SNAKE.Board = SNAKE.Board || (function () {
                     return false;
                 };
 
-                // Search for #listenerX to see where this is removed
-                SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
-            };
-
-            myDeviceOrientationListener = function(evt) {
-                if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
-                    var orientationX = evt.accelerationIncludingGravity.x;
-                    var orientationY = evt.accelerationIncludingGravity.y;
-                    if (me.getBoardState() === BOARD_STATE_GAME_STARTING && (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3));
+                myDeviceOrientationListener = function(evt) {
+                    if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
+                        var orientationX = evt.accelerationIncludingGravity.x;
+                        var orientationY = evt.accelerationIncludingGravity.y;
+                        if (me.getBoardState() === BOARD_STATE_GAME_STARTING && (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3));
                         me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                         mySnake.go();
                     }
@@ -1051,9 +1047,10 @@ SNAKE.Board = SNAKE.Board || (function () {
                     return false;
                 };
 
+                // Search for #listenerX to see where this is removed
+                SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
                 SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
             };
-
 
 
             /**
