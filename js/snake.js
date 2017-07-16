@@ -1014,6 +1014,7 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                         mySnake.rebirth();
                         mySnake.handleArrowKeys(keyNum);
+                        alert("Started keys");
                         me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                         mySnake.go();
                     }
