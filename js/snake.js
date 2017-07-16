@@ -259,11 +259,11 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 var snakeLength = me.snakeLength;
                 var lastMove = moveQueue[0] || currentDirection;
 
-                var orientationX = e.accelerationIncludingGravity.x;
-                var orientationY = e.accelerationIncludingGravity.y;
+                var orientationX = directionEvent.accelerationIncludingGravity.x;
+                var orientationY = directionEvent.accelerationIncludingGravity.y;
 
-                var absOrientationX = abs(orientationX);
-                var absOrientationY = abs(orientationY);
+                var absOrientationX = Math.abs(orientationX);
+                var absOrientationY = Math.abs(orientationY);
 
                 if (absOrientationX > 3 || absOrientationY > 3){
                     if (absOrientationX > absOrientationY){
@@ -294,7 +294,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
 
 
 
-            }
+            };
 
             /**
              * This method is executed for each move of the snake. It determines where the snake will go and what will happen to it. This method needs to run quickly.
@@ -656,6 +656,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 mySnake,
                 boardState = BOARD_STATE_GAME_STARTING,
                 myKeyListener,
+                myDeviceOrientationListener,
                 isPaused = false,//note: both the board and the snake can be paused
                 // Board components
                 elmContainer, elmPlayingField, elmAboutPanel, elmLengthPanel, elmWelcome, elmTryAgain, elmPauseScreen;
@@ -1030,6 +1031,30 @@ SNAKE.Board = SNAKE.Board || (function () {
                 // Search for #listenerX to see where this is removed
                 SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
             };
+
+            myDeviceOrientationListener = function(evt) {
+                if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
+                    var orientationX = evt.accelerationIncludingGravity.x;
+                    var orientationY = evt.accelerationIncludingGravity.y;
+                    if (me.getBoardState() === BOARD_STATE_GAME_STARTING && (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3));
+                        me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
+                        mySnake.go();
+                    }
+
+                    evt.cancelBubble = true;
+                    if (evt.stopPropagation) {
+                        evt.stopPropagation();
+                    }
+                    if (evt.preventDefault) {
+                        evt.preventDefault();
+                    }
+                    return false;
+                };
+
+                SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
+            };
+
+
 
             /**
              * This method is called when the snake has eaten some food.
