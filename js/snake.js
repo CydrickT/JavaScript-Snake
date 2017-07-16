@@ -1033,6 +1033,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                         var orientationX = evt.accelerationIncludingGravity.x;
                         var orientationY = evt.accelerationIncludingGravity.y;
                         if (me.getBoardState() === BOARD_STATE_GAME_STARTING && (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3));
+                        alert("Started");
                         me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                         mySnake.go();
                     }
