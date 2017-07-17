@@ -268,12 +268,10 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 if (absOrientationX > 3 || absOrientationY > 3){
                     if (absOrientationX > absOrientationY){
                         // Up/Down movement
-                        if (orientationX > 0){
-                            if (lastMove !== SNAKE_DIRECTION_UP || snakeLength === 1) {
+                        if ((lastMove !== SNAKE_DIRECTION_UP && lastMove !== SNAKE_DIRECTION_DOWN) || snakeLength === 1) {
+                            if (orientationX > 0) {
                                 moveQueue.unshift(SNAKE_DIRECTION_DOWN);
-                            }
-                        }else{
-                            if (lastMove !== SNAKE_DIRECTION_DOWN || snakeLength === 1) {
+                            } else {
                                 moveQueue.unshift(SNAKE_DIRECTION_UP);
                             }
                         }
@@ -281,11 +279,11 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     else{
                         // Left/Right movement
                         if (orientationY > 0){
-                            if (lastMove !== SNAKE_DIRECTION_LEFT || snakeLength === 1) {
+                            if ((lastMove !== SNAKE_DIRECTION_LEFT && lastMove !== SNAKE_DIRECTION_RIGHT) || snakeLength === 1) {
                                 moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
                             }
                         }else{
-                            if (lastMove !== SNAKE_DIRECTION_RIGHT || snakeLength === 1) {
+                            if ((lastMove !== SNAKE_DIRECTION_LEFT && lastMove !== SNAKE_DIRECTION_RIGHT) || snakeLength === 1) {
                                 moveQueue.unshift(SNAKE_DIRECTION_LEFT);
                             }
                         }
@@ -995,7 +993,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                             var keyNum = (evt.which) ? evt.which : evt.keyCode;
 
                             //32 = Enter
-                            if (keyNum === 32 && me.getBoardState() != BOARD_STATE_GAME_INITIAL) {
+                            if (keyNum === 32 && me.getBoardState() !== BOARD_STATE_GAME_INITIAL) {
                                 me.setPaused(!me.getPaused());
                             }
 
@@ -1051,7 +1049,6 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 // Search for #listenerX to see where this is removed
                 SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
-                var gyroPresent = false;
                 SNAKE.addEventListener(window, "devicemotion", function(event){
                     if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma){
                         SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);

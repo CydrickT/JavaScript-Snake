@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efbe057a-091b-47cb-b970-d1be54d585da" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/snake.js" afterPath="$PROJECT_DIR$/js/snake.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,10 +18,10 @@
       <file leaf-file-name="snake.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/snake.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="777">
-              <caret line="1057" column="37" lean-forward="false" selection-start-line="1057" selection-start-column="37" selection-end-line="1057" selection-end-column="37" />
+            <state relative-caret-position="612">
+              <caret line="995" column="71" lean-forward="false" selection-start-line="995" selection-start-column="71" selection-end-line="995" selection-end-column="71" />
               <folding>
-                <marker date="1500248258444" expanded="true" signature="27388:27401" ph="..." />
+                <marker date="1500319105924" expanded="true" signature="27393:27406" ph="..." />
               </folding>
             </state>
           </provider>
@@ -60,6 +61,7 @@
       <find>addEventListener</find>
       <find>myKeyListener</find>
       <find>BOARD_STATE_GAME_STARTED</find>
+      <find>started</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -105,8 +107,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -638,12 +640,13 @@
       <updated>1499879325478</updated>
       <workItem from="1499879327078" duration="4651000" />
       <workItem from="1499884397739" duration="2570000" />
-      <workItem from="1500230181539" duration="6837000" />
+      <workItem from="1500230181539" duration="9260000" />
+      <workItem from="1500318427529" duration="668000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14058000" />
+    <option name="totallyTimeSpent" value="17149000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -665,7 +668,6 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -677,6 +679,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,7 +698,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500248258444" expanded="true" signature="27388:27401" ph="..." />
+            <marker date="1500319105924" expanded="true" signature="27393:27406" ph="..." />
           </folding>
         </state>
       </provider>
@@ -713,7 +716,25 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500248258444" expanded="true" signature="27388:27401" ph="..." />
+            <marker date="1500319105924" expanded="true" signature="27393:27406" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="54" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/snake.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1500319105924" expanded="true" signature="27393:27406" ph="..." />
           </folding>
         </state>
       </provider>
@@ -743,10 +764,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/snake.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="1057" column="37" lean-forward="false" selection-start-line="1057" selection-start-column="37" selection-end-line="1057" selection-end-column="37" />
+        <state relative-caret-position="612">
+          <caret line="995" column="71" lean-forward="false" selection-start-line="995" selection-start-column="71" selection-end-line="995" selection-end-column="71" />
           <folding>
-            <marker date="1500248258444" expanded="true" signature="27388:27401" ph="..." />
+            <marker date="1500319105924" expanded="true" signature="27393:27406" ph="..." />
           </folding>
         </state>
       </provider>
