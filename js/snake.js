@@ -820,6 +820,7 @@ SNAKE.Board = SNAKE.Board || (function () {
              */
             me.resetBoard = function () {
                 SNAKE.removeEventListener(elmContainer, "keydown", myKeyListener, false);
+                SNAKE.removeEventListener(window, "devicemotion", myDeviceOrientationListener, false);
                 mySnake.reset();
                 elmLengthPanel.innerHTML = "Length: 1";
                 me.setupPlayingField();
@@ -1029,12 +1030,14 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 myDeviceOrientationListener = function(evt) {
                     if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
+                        SNAKE.removeEventListener(elmContainer, "keydown", myDeviceOrientationListener, false);
                         var orientationX = evt.accelerationIncludingGravity.x;
                         var orientationY = evt.accelerationIncludingGravity.y;
-                        if (me.getBoardState() === BOARD_STATE_GAME_STARTING && (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3));
-                        alert("Started");
-                        me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
-                        mySnake.go();
+                        if (me.getBoardState() === BOARD_STATE_GAME_STARTING && (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3)){
+                            alert("Started");
+                            me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
+                            mySnake.go();
+                        }
                     }
 
                     evt.cancelBubble = true;
@@ -1053,8 +1056,6 @@ SNAKE.Board = SNAKE.Board || (function () {
                     if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma){
                         SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
                         alert("Yes");
-                    }else{
-                        alert("No");
                     }
                 });
             };
