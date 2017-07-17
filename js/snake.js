@@ -272,7 +272,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     if (absOrientationX > absOrientationY){
                         // Up/Down movement
                         console.log("Up/Down");
-                        if ((lastMove !== SNAKE_DIRECTION_UP && lastMove !== SNAKE_DIRECTION_DOWN) || snakeLength === 1) {
+                        if ((lastMove !== SNAKE_DIRECTION_UP && lastMove !== SNAKE_DIRECTION_DOWN)) {
                             if (orientationX > 0) {
                                 console.log("Down");
                                 moveQueue.unshift(SNAKE_DIRECTION_DOWN);
@@ -285,7 +285,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     else {
                         // Left/Right movement
                         console.log("Left/Right");
-                        if ((lastMove !== SNAKE_DIRECTION_LEFT && lastMove !== SNAKE_DIRECTION_RIGHT) || snakeLength === 1) {
+                        if ((lastMove !== SNAKE_DIRECTION_LEFT && lastMove !== SNAKE_DIRECTION_RIGHT)) {
                             if (orientationY > 0) {
                                 console.log("Right");
                                 moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
