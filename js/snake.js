@@ -271,26 +271,26 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 if (absOrientationX >= 3 || absOrientationY >= 3){
                     if (absOrientationX > absOrientationY){
                         // Up/Down movement
-                        if ((lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT)) {
+                        if ((lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN)) {
                             if (orientationX > 0) {
-                                console.log("Down");
-                                moveQueue.unshift(SNAKE_DIRECTION_DOWN);
+                                console.log("Right");
+                                moveQueue.unshift(SNAKE_DIRECTION_LEFT);
                             } else {
-                                console.log("Up");
-                                moveQueue.unshift(SNAKE_DIRECTION_UP);
+                                console.log("Left");
+                                moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
                             }
                         }
                     }
                     else {
                         // Left/Right movement
-                        if ((lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN)) {
+                        if ((lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT)) {
                             if (orientationY > 0) {
-                                console.log("Right");
-                                moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
+                                console.log("Down");
+                                moveQueue.unshift(SNAKE_DIRECTION_DOWN);
                             }
                             else{
-                                console.log("Left");
-                                moveQueue.unshift(SNAKE_DIRECTION_LEFT);
+                                console.log("Up");
+                                moveQueue.unshift(SNAKE_DIRECTION_UP);
                             }
                         }
                     }
