@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efbe057a-091b-47cb-b970-d1be54d585da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/snake.js" afterPath="$PROJECT_DIR$/js/snake.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,10 +17,10 @@
       <file leaf-file-name="snake.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/snake.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="145" column="33" lean-forward="true" selection-start-line="145" selection-start-column="33" selection-end-line="145" selection-end-column="33" />
+            <state relative-caret-position="658">
+              <caret line="1041" column="41" lean-forward="true" selection-start-line="1041" selection-start-column="41" selection-end-line="1041" selection-end-column="41" />
               <folding>
-                <marker date="1500323158671" expanded="true" signature="27661:27674" ph="..." />
+                <marker date="1500324208818" expanded="true" signature="27743:27756" ph="..." />
               </folding>
             </state>
           </provider>
@@ -66,6 +65,7 @@
       <find>&gt; 3</find>
       <find>handleArrowKeys</find>
       <find>moveQueue</find>
+      <find>alert(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -645,12 +645,12 @@
       <workItem from="1499879327078" duration="4651000" />
       <workItem from="1499884397739" duration="2570000" />
       <workItem from="1500230181539" duration="9260000" />
-      <workItem from="1500318427529" duration="4416000" />
+      <workItem from="1500318427529" duration="5460000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20897000" />
+    <option name="totallyTimeSpent" value="21941000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -702,7 +702,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500323158671" expanded="true" signature="27661:27674" ph="..." />
+            <marker date="1500324208818" expanded="true" signature="27743:27756" ph="..." />
           </folding>
         </state>
       </provider>
@@ -720,7 +720,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500323158671" expanded="true" signature="27661:27674" ph="..." />
+            <marker date="1500324208818" expanded="true" signature="27743:27756" ph="..." />
           </folding>
         </state>
       </provider>
@@ -738,7 +738,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500323158671" expanded="true" signature="27661:27674" ph="..." />
+            <marker date="1500324208818" expanded="true" signature="27743:27756" ph="..." />
           </folding>
         </state>
       </provider>
@@ -768,10 +768,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/snake.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="145" column="33" lean-forward="true" selection-start-line="145" selection-start-column="33" selection-end-line="145" selection-end-column="33" />
+        <state relative-caret-position="658">
+          <caret line="1041" column="41" lean-forward="true" selection-start-line="1041" selection-start-column="41" selection-end-line="1041" selection-end-column="41" />
           <folding>
-            <marker date="1500323158671" expanded="true" signature="27661:27674" ph="..." />
+            <marker date="1500324208818" expanded="true" signature="27743:27756" ph="..." />
           </folding>
         </state>
       </provider>

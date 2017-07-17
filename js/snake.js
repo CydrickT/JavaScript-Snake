@@ -10,9 +10,9 @@ var BOARD_STATE_GAME_STARTING = 1;
 var BOARD_STATE_GAME_STARTED = 2;
 
 var SNAKE_DIRECTION_UP = 0;
-var SNAKE_DIRECTION_LEFT = 3;
 var SNAKE_DIRECTION_RIGHT = 1;
 var SNAKE_DIRECTION_DOWN = 2;
+var SNAKE_DIRECTION_LEFT = 3;
 
 /**
  * @module Snake
@@ -255,12 +255,14 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 if (isDead || isPaused) {
                     return;
                 }
-                console.log("Initial.");
                 var snakeLength = me.snakeLength;
                 var lastMove = moveQueue[0] || currentDirection;
+                console.log("Last Move = " + lastMove);
 
                 var orientationX = directionEvent.accelerationIncludingGravity.x;
                 var orientationY = directionEvent.accelerationIncludingGravity.y;
+
+                console.log(orientationX + " - " + orientationY);
 
                 var absOrientationX = Math.abs(orientationX);
                 var absOrientationY = Math.abs(orientationY);
@@ -1016,7 +1018,6 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                         mySnake.rebirth();
                         mySnake.handleArrowKeys(keyNum);
-                        alert("Started keys");
                         me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                         mySnake.go();
                     }
@@ -1037,11 +1038,9 @@ SNAKE.Board = SNAKE.Board || (function () {
                         var orientationX = evt.accelerationIncludingGravity.x;
                         var orientationY = evt.accelerationIncludingGravity.y;
                         if (me.getBoardState() === BOARD_STATE_GAME_STARTING && (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3)){
-                            alert("Started");
                             me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                             mySnake.go();
                             SNAKE.addEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
-                            alert("That version");
                         }
 
                     }
