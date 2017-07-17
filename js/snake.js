@@ -288,16 +288,13 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                                 console.log("Right");
                                 moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
                             }
-                            else
+                            else{
                                 console.log("Left");
                                 moveQueue.unshift(SNAKE_DIRECTION_LEFT);
                             }
                         }
                     }
                 }
-
-
-
             };
 
             /**
@@ -1043,7 +1040,10 @@ SNAKE.Board = SNAKE.Board || (function () {
                             alert("Started");
                             me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                             mySnake.go();
+                            SNAKE.addEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
+                            alert("That version");
                         }
+
                     }
 
                     evt.cancelBubble = true;
