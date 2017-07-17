@@ -258,6 +258,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 var snakeLength = me.snakeLength;
                 var lastMove = moveQueue[0] || currentDirection;
                 console.log("Last Move = " + lastMove);
+                console.log("Queue = " + moveQueue);
 
                 var orientationX = directionEvent.accelerationIncludingGravity.x;
                 var orientationY = directionEvent.accelerationIncludingGravity.y;
