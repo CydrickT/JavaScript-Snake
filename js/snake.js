@@ -271,8 +271,8 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     console.log("Okay 1");
                     if (absOrientationX > absOrientationY){
                         // Up/Down movement
-                        console.log("Up/Down " + (lastMove !== SNAKE_DIRECTION_UP).toString() + " - "  + (lastMove !== SNAKE_DIRECTION_DOWN).toString());
-                        if ((lastMove !== SNAKE_DIRECTION_UP && lastMove !== SNAKE_DIRECTION_DOWN)) {
+                        console.log("Up/Down " + (lastMove === SNAKE_DIRECTION_LEFT).toString() + " - "  + (lastMove === SNAKE_DIRECTION_RIGHT).toString());
+                        if ((lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT)) {
                             if (orientationX > 0) {
                                 console.log("Down");
                                 moveQueue.unshift(SNAKE_DIRECTION_DOWN);
@@ -284,8 +284,8 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     }
                     else {
                         // Left/Right movement
-                        console.log("Left/Right" + (lastMove !== SNAKE_DIRECTION_LEFT).toString() + " - " + (lastMove !== SNAKE_DIRECTION_RIGHT).toString());
-                        if ((lastMove !== SNAKE_DIRECTION_LEFT && lastMove !== SNAKE_DIRECTION_RIGHT)) {
+                        console.log("Left/Right " + (lastMove === SNAKE_DIRECTION_UP).toString() + " - " + (lastMove === SNAKE_DIRECTION_DOWN).toString());
+                        if ((lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN)) {
                             if (orientationY > 0) {
                                 console.log("Right");
                                 moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
