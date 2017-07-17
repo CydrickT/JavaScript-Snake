@@ -255,7 +255,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 if (isDead || isPaused) {
                     return;
                 }
-
+                console.log("Initial.");
                 var snakeLength = me.snakeLength;
                 var lastMove = moveQueue[0] || currentDirection;
 
@@ -265,25 +265,31 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 var absOrientationX = Math.abs(orientationX);
                 var absOrientationY = Math.abs(orientationY);
 
-                if (absOrientationX > 3 || absOrientationY > 3){
+                if (absOrientationX >= 3 || absOrientationY >= 3){
+                    console.log("Okay 1");
                     if (absOrientationX > absOrientationY){
                         // Up/Down movement
+                        console.log("Up/Down");
                         if ((lastMove !== SNAKE_DIRECTION_UP && lastMove !== SNAKE_DIRECTION_DOWN) || snakeLength === 1) {
                             if (orientationX > 0) {
+                                console.log("Down");
                                 moveQueue.unshift(SNAKE_DIRECTION_DOWN);
                             } else {
+                                console.log("Up");
                                 moveQueue.unshift(SNAKE_DIRECTION_UP);
                             }
                         }
                     }
-                    else{
+                    else {
                         // Left/Right movement
-                        if (orientationY > 0){
-                            if ((lastMove !== SNAKE_DIRECTION_LEFT && lastMove !== SNAKE_DIRECTION_RIGHT) || snakeLength === 1) {
+                        console.log("Left/Right");
+                        if ((lastMove !== SNAKE_DIRECTION_LEFT && lastMove !== SNAKE_DIRECTION_RIGHT) || snakeLength === 1) {
+                            if (orientationY > 0) {
+                                console.log("Right");
                                 moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
                             }
-                        }else{
-                            if ((lastMove !== SNAKE_DIRECTION_LEFT && lastMove !== SNAKE_DIRECTION_RIGHT) || snakeLength === 1) {
+                            else
+                                console.log("Left");
                                 moveQueue.unshift(SNAKE_DIRECTION_LEFT);
                             }
                         }
