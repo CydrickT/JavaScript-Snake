@@ -268,7 +268,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 var absOrientationX = Math.abs(orientationX);
                 var absOrientationY = Math.abs(orientationY);
 
-                if (absOrientationX >= 3 || absOrientationY >= 3){
+                if (absOrientationX >= 2 || absOrientationY >= 2){
                     if (absOrientationX > absOrientationY){
                         // Up/Down movement
                         if ((lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN)) {
