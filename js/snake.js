@@ -1034,7 +1034,7 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 myDeviceOrientationListener = function(evt) {
                     if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
-                        SNAKE.removeEventListener(elmContainer, "keydown", myDeviceOrientationListener, false);
+                        SNAKE.removeEventListener(elmContainer, "devicemotion",  mySnake.handleDeviceOrientation, false);
                         var orientationX = evt.accelerationIncludingGravity.x;
                         var orientationY = evt.accelerationIncludingGravity.y;
                         if (me.getBoardState() === BOARD_STATE_GAME_STARTING && (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3)){
