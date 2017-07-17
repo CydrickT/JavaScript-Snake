@@ -1052,12 +1052,7 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 // Search for #listenerX to see where this is removed
                 SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
-                SNAKE.addEventListener(window, "devicemotion", function(event){
-                    if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma){
-                        SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
-                        alert("Yes");
-                    }
-                });
+                SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
             };
 
 

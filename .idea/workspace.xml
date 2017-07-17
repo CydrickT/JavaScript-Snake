@@ -17,10 +17,10 @@
       <file leaf-file-name="snake.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/snake.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="1058" column="21" lean-forward="false" selection-start-line="1058" selection-start-column="21" selection-end-line="1058" selection-end-column="21" />
+            <state relative-caret-position="509">
+              <caret line="1054" column="16" lean-forward="false" selection-start-line="1054" selection-start-column="16" selection-end-line="1054" selection-end-column="16" />
               <folding>
-                <marker date="1500320027466" expanded="true" signature="27393:27406" ph="..." />
+                <marker date="1500320252942" expanded="true" signature="27393:27406" ph="..." />
               </folding>
             </state>
           </provider>
@@ -62,6 +62,7 @@
       <find>BOARD_STATE_GAME_STARTED</find>
       <find>started</find>
       <find>removeEventListener</find>
+      <find>No</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -641,12 +642,12 @@
       <workItem from="1499879327078" duration="4651000" />
       <workItem from="1499884397739" duration="2570000" />
       <workItem from="1500230181539" duration="9260000" />
-      <workItem from="1500318427529" duration="1585000" />
+      <workItem from="1500318427529" duration="1802000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18066000" />
+    <option name="totallyTimeSpent" value="18283000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -698,7 +699,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500320027466" expanded="true" signature="27393:27406" ph="..." />
+            <marker date="1500320252942" expanded="true" signature="27393:27406" ph="..." />
           </folding>
         </state>
       </provider>
@@ -716,7 +717,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500320027466" expanded="true" signature="27393:27406" ph="..." />
+            <marker date="1500320252942" expanded="true" signature="27393:27406" ph="..." />
           </folding>
         </state>
       </provider>
@@ -734,7 +735,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500320027466" expanded="true" signature="27393:27406" ph="..." />
+            <marker date="1500320252942" expanded="true" signature="27393:27406" ph="..." />
           </folding>
         </state>
       </provider>
@@ -764,10 +765,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/snake.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="1058" column="21" lean-forward="false" selection-start-line="1058" selection-start-column="21" selection-end-line="1058" selection-end-column="21" />
+        <state relative-caret-position="509">
+          <caret line="1054" column="16" lean-forward="false" selection-start-line="1054" selection-start-column="16" selection-end-line="1054" selection-end-column="16" />
           <folding>
-            <marker date="1500320027466" expanded="true" signature="27393:27406" ph="..." />
+            <marker date="1500320252942" expanded="true" signature="27393:27406" ph="..." />
           </folding>
         </state>
       </provider>
