@@ -287,6 +287,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                         }
                     }
                 }
+                directionEvent.preventDefault();
             };
 
 
@@ -1116,8 +1117,8 @@ SNAKE.Board = SNAKE.Board || (function () {
                         if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
                             me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                             mySnake.go();
-                            console.log("Added");
                             SNAKE.addEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
+                            mySnake.handleDeviceTouch(evt);
                         }
                     }
                 };
