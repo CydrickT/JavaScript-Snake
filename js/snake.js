@@ -271,15 +271,11 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 if (isDead || isPaused) {
                     return;
                 }
-                var snakeLength = me.snakeLength;
+
                 var lastMove = moveQueue[0] || currentDirection;
-                console.log("Last Move = " + lastMove);
-                console.log("Queue = " + moveQueue);
 
                 var orientationX = directionEvent.accelerationIncludingGravity.x;
                 var orientationY = directionEvent.accelerationIncludingGravity.y;
-
-                console.log(orientationX + " - " + orientationY);
 
                 var absOrientationX = Math.abs(orientationX);
                 var absOrientationY = Math.abs(orientationY);
@@ -289,10 +285,8 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                         // Up/Down movement
                         if ((lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN)) {
                             if (orientationX > 0) {
-                                console.log("Right");
                                 moveQueue.unshift(SNAKE_DIRECTION_LEFT);
                             } else {
-                                console.log("Left");
                                 moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
                             }
                         }
@@ -301,17 +295,81 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                         // Left/Right movement
                         if ((lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT)) {
                             if (orientationY > 0) {
-                                console.log("Down");
                                 moveQueue.unshift(SNAKE_DIRECTION_DOWN);
                             }
                             else{
-                                console.log("Up");
                                 moveQueue.unshift(SNAKE_DIRECTION_UP);
                             }
                         }
                     }
                 }
+                directionEvent.preventDefault();
             };
+
+
+            me.handleDeviceTouch = function(touchEvent) {
+
+                if (isDead || isPaused) {
+                    return;
+                }
+                else if (touchEvent.touches.length !== 1) {
+                    return;
+                }
+
+                console.log(getClientWidth().toString() + " - " + getClientHeight().toString());
+
+                var lastMove = moveQueue[0] || currentDirection;
+
+                var touchX = touchEvent.touches[0].clientX;
+                var touchY = touchEvent.touches[0].clientY;
+
+                if (touchX < getClientWidth() * 0.25 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN)){
+                    moveQueue.unshift(SNAKE_DIRECTION_LEFT);
+                }
+                else if (touchX > getClientWidth() * 0.75 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN)){
+                    moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
+                }
+                else if (touchY < getClientHeight() * 0.3 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT)){
+                    moveQueue.unshift(SNAKE_DIRECTION_UP);
+                }
+                else if (touchY > getClientHeight() * 0.6 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT)){
+                    moveQueue.unshift(SNAKE_DIRECTION_DOWN);
+                }
+
+            };
+
+
+            /*
+             This function returns the width of the available screen real estate that we have
+             */
+            function getClientWidth() {
+                var myWidth = 0;
+                if (typeof window.innerWidth === "number") {
+                    myWidth = window.innerWidth;//Non-IE
+                } else if (document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight )) {
+                    myWidth = document.documentElement.clientWidth;//IE 6+ in 'standards compliant mode'
+                } else if (document.body && ( document.body.clientWidth || document.body.clientHeight )) {
+                    myWidth = document.body.clientWidth;//IE 4 compatible
+                }
+                return myWidth;
+            }
+
+            /*
+             This function returns the height of the available screen real estate that we have
+             */
+            function getClientHeight() {
+                var myHeight = 0;
+                if (typeof window.innerHeight === "number") {
+                    myHeight = window.innerHeight;//Non-IE
+                } else if (document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight )) {
+                    myHeight = document.documentElement.clientHeight;//IE 6+ in 'standards compliant mode'
+                } else if (document.body && ( document.body.clientWidth || document.body.clientHeight )) {
+                    myHeight = document.body.clientHeight;//IE 4 compatible
+                }
+                return myHeight;
+            }
+
+
 
             /**
              * This method is executed for each move of the snake. It determines where the snake will go and what will happen to it. This method needs to run quickly.
@@ -805,7 +863,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 };
 
                 var kbTryAgainShortcut = function (evt) {
-                    if (me.getBoardState() !== BOARD_STATE_INITIAL || tmpElm.style.display !== "block") {
+                    if (me.getBoardState() !== BOARD_STATE_GAME_INITIAL || tmpElm.style.display !== "block") {
                         return;
                     }
                     if (!evt) var evt = window.event;
@@ -851,6 +909,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 mySnake.reset();
                 elmLengthPanel.innerHTML = "Length: 1";
                 me.setupPlayingField();
+                mySnake.rebirth();
             };
             /**
              * Gets the current state of the playing board. Use BOARD_STATE_GAME_INITIAL, BOARD_STATE_GAME_STARTING and BOARD_STATE_GAME_STARTED.
@@ -1076,7 +1135,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                         SNAKE.removeEventListener(elmContainer, "devicemotion",  mySnake.handleDeviceOrientation, false);
                         var orientationX = evt.accelerationIncludingGravity.x;
                         var orientationY = evt.accelerationIncludingGravity.y;
-                        if (me.getBoardState() === BOARD_STATE_GAME_STARTING && (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3)){
+                        if (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3){
                             me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                             mySnake.go();
                             SNAKE.addEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
@@ -1094,9 +1153,21 @@ SNAKE.Board = SNAKE.Board || (function () {
                     return false;
                 };
 
+                myTouchListener = function(evt){
+                    if(evt.touches.length == 1){
+                        if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
+                            me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
+                            mySnake.go();
+                            SNAKE.addEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
+                            mySnake.handleDeviceTouch(evt);
+                        }
+                    }
+                };
+
                 // Search for #listenerX to see where this is removed
                 SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
                 SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
+                SNAKE.addEventListener(elmContainer, "touchstart", myTouchListener, false)
             };
 
 
