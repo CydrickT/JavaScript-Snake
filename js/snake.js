@@ -252,11 +252,9 @@ SNAKE.Snake = SNAKE.Snake || (function () {
             };
 
             me.handleDeviceOrientation = function(directionEvent){
-                console.log("IsDead: " + isDead.toString() + " - IsPaused: " + isPaused.toString());
                 if (isDead || isPaused) {
                     return;
                 }
-                console.log("Inside");
 
                 var lastMove = moveQueue[0] || currentDirection;
 
@@ -776,7 +774,6 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 var reloadGame = function () {
                     tmpElm.style.display = "none";
-                    me.rebirth()
                     me.resetBoard();
                     me.setBoardState(BOARD_STATE_GAME_STARTING);
                     me.getBoardContainer().focus();
@@ -828,6 +825,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 mySnake.reset();
                 elmLengthPanel.innerHTML = "Length: 1";
                 me.setupPlayingField();
+                mySnake.rebirth();
             };
             /**
              * Gets the current state of the playing board. Use BOARD_STATE_GAME_INITIAL, BOARD_STATE_GAME_STARTING and BOARD_STATE_GAME_STARTED.
