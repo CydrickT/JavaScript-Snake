@@ -133,7 +133,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 rowShift = [-1, 0, 1, 0],
                 xPosShift = [],
                 yPosShift = [],
-                snakeSpeed = 75,
+                //snakeSpeed = 75,
                 isDead = false,
                 isPaused = false;
 
@@ -142,10 +142,26 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     snakeSpeed = speed;
                 });
             }
+			
+			// setup event listeners
+			function getMode(mode) {
+				if(typeof snakeSpeed == 'undefined') {
+					var comboBoxSpeed = document.getElementById("chosenSnakeSpeed");
+					var speed = comboBoxSpeed.options[comboBoxSpeed.selectedIndex].value;
+					snakeSpeed = speed;
+				}
+				document.getElementById(mode).addEventListener('click', function () {
+					var comboBoxSpeed = document.getElementById("chosenSnakeSpeed");
+					var speed = comboBoxSpeed.options[comboBoxSpeed.selectedIndex].value;
+					console.log("speed: " + speed);
+					snakeSpeed = speed;
+				});
+			}
 
-            getMode('Easy', 100);
-            getMode('Medium', 75);
-            getMode('Difficult', 50);
+            //getMode('Easy', 100);
+            //getMode('Medium', 75);
+            //getMode('Difficult', 50);
+			//getMode('chosenSnakeSpeed');
             // ----- public variables -----
             me.snakeBody = {};
             me.snakeBody["b0"] = new SnakeBlock(); // create snake head
@@ -738,7 +754,10 @@ SNAKE.Board = SNAKE.Board || (function () {
                 if (config.fullScreen) {
                     fullScreenText = "On Windows, press F11 to play in Full Screen mode.";
                 }
-                welcomeTxt.innerHTML = "JavaScript Snake<p></p>Use the <strong>arrow keys</strong> on your keyboard to play the game. " + fullScreenText + "<p></p>";
+                welcomeTxt.innerHTML = "JavaScript Snake<p></p>Use the <strong>arrow keys</strong> on your keyboard to play the game. " + fullScreenText + "<p></p>" +
+				"<select id='chosenSnakeSpeed'><option id='Easy' value='10' selected>Easy</option> <option id='Medium' value='50'>Medium</option> <option id='Difficult' value='500'>Difficult</option></select> <br /><br />";
+					
+				
                 var welcomeStart = document.createElement("button");
                 welcomeStart.appendChild(document.createTextNode("Play Game"));
                 var loadGame = function () {
@@ -771,6 +790,10 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 var tryAgainTxt = document.createElement("div");
                 tryAgainTxt.innerHTML = "JavaScript Snake<p></p>You died :(.<p></p>";
+				
+				var modeSpeedTxt = document.createElement("div");
+                modeSpeedTxt.innerHTML = "<select id='chosenSnakeSpeed'><option id='Easy' value='10' selected>Easy</option> <option id='Medium' value='50'>Medium</option> <option id='Difficult' value='500'>Difficult</option></select> <br /><br />";;	
+				
                 var tryAgainStart = document.createElement("button");
                 tryAgainStart.appendChild(document.createTextNode("Play Again?"));
 
@@ -796,6 +819,7 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 SNAKE.addEventListener(tryAgainStart, "click", reloadGame, false);
                 tmpElm.appendChild(tryAgainTxt);
+				tmpElm.appendChild(modeSpeedTxt);
                 tmpElm.appendChild(tryAgainStart);
                 return tmpElm;
             }
@@ -973,13 +997,30 @@ SNAKE.Board = SNAKE.Board || (function () {
                 // setup event listeners
                 function getMode(mode, speed) {
                     document.getElementById(mode).addEventListener('click', function () {
+						console.log("chosen speed: " + speed);
+                        snakeSpeed = speed;
+                    });
+                }
+				
+				// setup event listeners
+                function getMode(mode) {
+					if(typeof snakeSpeed == 'undefined') {
+						var comboBoxSpeed = document.getElementById("chosenSnakeSpeed");
+						var speed = comboBoxSpeed.options[comboBoxSpeed.selectedIndex].value;
+                        snakeSpeed = speed;
+					}
+                    document.getElementById(mode).addEventListener('click', function () {
+						var comboBoxSpeed = document.getElementById("chosenSnakeSpeed");
+						var speed = comboBoxSpeed.options[comboBoxSpeed.selectedIndex].value;
+						console.log("speed: " + speed);
                         snakeSpeed = speed;
                     });
                 }
 
-                getMode('Easy', 100);
-                getMode('Medium', 75);
-                getMode('Difficult', 50);
+                //getMode('Easy', 100);
+                //getMode('Medium', 75);
+                //getMode('Difficult', 50);
+				getMode('chosenSnakeSpeed');
                 myKeyListener = function (evt) {
                     if (!evt) var evt = window.event;
                     var keyNum = (evt.which) ? evt.which : evt.keyCode;
