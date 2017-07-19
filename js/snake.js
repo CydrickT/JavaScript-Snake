@@ -252,13 +252,13 @@ SNAKE.Snake = SNAKE.Snake || (function () {
             };
 
             me.handleDeviceOrientation = function(directionEvent){
+                console.log("IsDead: " + isDead.toString() + " - IsPaused: " + isPaused.toString());
                 if (isDead || isPaused) {
                     return;
                 }
-                var snakeLength = me.snakeLength;
+                console.log("Inside");
+
                 var lastMove = moveQueue[0] || currentDirection;
-                console.log("Last Move = " + lastMove);
-                console.log("Queue = " + moveQueue);
 
                 var orientationX = directionEvent.accelerationIncludingGravity.x;
                 var orientationY = directionEvent.accelerationIncludingGravity.y;
@@ -776,13 +776,14 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 var reloadGame = function () {
                     tmpElm.style.display = "none";
+                    me.rebirth()
                     me.resetBoard();
                     me.setBoardState(BOARD_STATE_GAME_STARTING);
                     me.getBoardContainer().focus();
                 };
 
                 var kbTryAgainShortcut = function (evt) {
-                    if (me.getBoardState() !== BOARD_STATE_INITIAL || tmpElm.style.display !== "block") {
+                    if (me.getBoardState() !== BOARD_STATE_GAME_INITIAL || tmpElm.style.display !== "block") {
                         return;
                     }
                     if (!evt) var evt = window.event;
