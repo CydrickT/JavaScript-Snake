@@ -133,35 +133,9 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 rowShift = [-1, 0, 1, 0],
                 xPosShift = [],
                 yPosShift = [],
-                //snakeSpeed = 75,
                 isDead = false,
-                isPaused = false;
+                isPaused = false;          
 
-            function getMode(mode, speed) {
-                document.getElementById(mode).addEventListener('click', function () {
-                    snakeSpeed = speed;
-                });
-            }
-			
-			// setup event listeners
-			function getMode(mode) {
-				if(typeof snakeSpeed == 'undefined') {
-					var comboBoxSpeed = document.getElementById("chosenSnakeSpeed");
-					var speed = comboBoxSpeed.options[comboBoxSpeed.selectedIndex].value;
-					snakeSpeed = speed;
-				}
-				document.getElementById(mode).addEventListener('click', function () {
-					var comboBoxSpeed = document.getElementById("chosenSnakeSpeed");
-					var speed = comboBoxSpeed.options[comboBoxSpeed.selectedIndex].value;
-					console.log("speed: " + speed);
-					snakeSpeed = speed;
-				});
-			}
-
-            //getMode('Easy', 100);
-            //getMode('Medium', 75);
-            //getMode('Difficult', 50);
-			//getMode('chosenSnakeSpeed');
             // ----- public variables -----
             me.snakeBody = {};
             me.snakeBody["b0"] = new SnakeBlock(); // create snake head
@@ -813,9 +787,11 @@ SNAKE.Board = SNAKE.Board || (function () {
                     fullScreenText = "On Windows, press F11 to play in Full Screen mode.";
                 }
                 welcomeTxt.innerHTML = "JavaScript Snake<p></p>Use the <strong>arrow keys</strong> on your keyboard to play the game. " + fullScreenText + "<p></p>" +
-				"<select id='chosenSnakeSpeed'><option id='Easy' value='10' selected>Easy</option> <option id='Medium' value='50'>Medium</option> <option id='Difficult' value='500'>Difficult</option></select> <br /><br />";
-					
+				"<select id='chosenSnakeSpeed'><option id='Easy' value='100' selected>Easy</option> <option id='Medium' value='75'>Medium</option> <option id='Difficult' value='50'>Difficult</option></select> <br /><br />";
 				
+				var highScoreTxt = document.createElement("div");
+                highScoreTxt.innerHTML = "<br /><button id='high-score'>Get your current high score for this game.</button>";				
+								
                 var welcomeStart = document.createElement("button");
                 welcomeStart.appendChild(document.createTextNode("Play Game"));
                 var loadGame = function () {
@@ -838,6 +814,7 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 tmpElm.appendChild(welcomeTxt);
                 tmpElm.appendChild(welcomeStart);
+				tmpElm.appendChild(highScoreTxt);
                 return tmpElm;
             }
 
@@ -845,15 +822,19 @@ SNAKE.Board = SNAKE.Board || (function () {
                 var tmpElm = document.createElement("div");
                 tmpElm.id = "sbTryAgain" + myId;
                 tmpElm.className = "snake-try-again-dialog";
+				snakeSpeed = 100;
 
                 var tryAgainTxt = document.createElement("div");
                 tryAgainTxt.innerHTML = "JavaScript Snake<p></p>You died :(.<p></p>";
 				
 				var modeSpeedTxt = document.createElement("div");
-                modeSpeedTxt.innerHTML = "<select id='chosenSnakeSpeed'><option id='Easy' value='10' selected>Easy</option> <option id='Medium' value='50'>Medium</option> <option id='Difficult' value='500'>Difficult</option></select> <br /><br />";;	
+                modeSpeedTxt.innerHTML = "<select onchange='getModeTryAgain()' id='chosenSnakeSpeedTryAgain'><option id='EasyTry' value='100'>Easy</option> <option id='MediumTry' value='75'>Medium</option> <option id='DifficultTry' value='50'>Difficult</option></select> <br /><br />";;		
 				
                 var tryAgainStart = document.createElement("button");
-                tryAgainStart.appendChild(document.createTextNode("Play Again?"));
+                tryAgainStart.appendChild(document.createTextNode("Play Again?"));	
+
+				var highScoreTxt = document.createElement("div");
+                highScoreTxt.innerHTML = "<br /><button onclick='getHighScoreTryAgain()' id='high-score-try'>Get your current high score for this game.</button>";				
 
                 var reloadGame = function () {
                     tmpElm.style.display = "none";
@@ -879,6 +860,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 tmpElm.appendChild(tryAgainTxt);
 				tmpElm.appendChild(modeSpeedTxt);
                 tmpElm.appendChild(tryAgainStart);
+				tmpElm.appendChild(highScoreTxt);
                 return tmpElm;
             }
 
@@ -898,6 +880,32 @@ SNAKE.Board = SNAKE.Board || (function () {
             me.getPaused = function () {
                 return isPaused;
             };
+			
+			getModeTryAgain = function() {
+			
+				var comboBoxSpeed = document.getElementById("chosenSnakeSpeedTryAgain");
+				var speed = comboBoxSpeed.options[comboBoxSpeed.selectedIndex].value;
+				snakeSpeed = speed;
+			};
+			
+			setTryAgainMode = function(snakeSpeed) {
+				
+				if(snakeSpeed == 100)
+					document.getElementById("EasyTry").selected = true;
+				else if(snakeSpeed == 75)
+					document.getElementById("MediumTry").selected = true;
+				else if(snakeSpeed == 50)
+					document.getElementById("DifficultTry").selected = true;				
+			}
+			
+			getHighScoreTryAgain = function () {
+				//document.getElementById('high-score-try').addEventListener('click', function () {
+					if (localStorage.jsSnakeHighScore == undefined) alert('You have not played this game yet!');
+					else
+						alert('Your current high score is ' + localStorage.jsSnakeHighScore + '.');
+				//});
+			}
+			//getHighScore();
 
             /**
              * Resets the playing board for a new game.
@@ -1052,14 +1060,15 @@ SNAKE.Board = SNAKE.Board || (function () {
                 }
 
                 myFood.randomlyPlaceFood();
-
-                // setup event listeners
-                function getMode(mode, speed) {
-                    document.getElementById(mode).addEventListener('click', function () {
-						console.log("chosen speed: " + speed);
-                        snakeSpeed = speed;
-                    });
-                }
+				
+				function getHighScore() {
+					document.getElementById('high-score').addEventListener('click', function () {
+						if (localStorage.jsSnakeHighScore == undefined) alert('You have not played this game yet!');
+						else
+							alert('Your current high score is ' + localStorage.jsSnakeHighScore + '.');
+					});
+				}
+				getHighScore();
 				
 				// setup event listeners
                 function getMode(mode) {
@@ -1067,19 +1076,17 @@ SNAKE.Board = SNAKE.Board || (function () {
 						var comboBoxSpeed = document.getElementById("chosenSnakeSpeed");
 						var speed = comboBoxSpeed.options[comboBoxSpeed.selectedIndex].value;
                         snakeSpeed = speed;
+						setTryAgainMode(snakeSpeed);
 					}
                     document.getElementById(mode).addEventListener('click', function () {
 						var comboBoxSpeed = document.getElementById("chosenSnakeSpeed");
 						var speed = comboBoxSpeed.options[comboBoxSpeed.selectedIndex].value;
-						console.log("speed: " + speed);
                         snakeSpeed = speed;
+						setTryAgainMode(snakeSpeed);
                     });
                 }
 
-                //getMode('Easy', 100);
-                //getMode('Medium', 75);
-                //getMode('Difficult', 50);
-				getMode('chosenSnakeSpeed');
+                getMode('chosenSnakeSpeed');
                 myKeyListener = function (evt) {
                     if (!evt) var evt = window.event;
                     var keyNum = (evt.which) ? evt.which : evt.keyCode;
@@ -1217,11 +1224,3 @@ SNAKE.Board = SNAKE.Board || (function () {
 
         }; // end return function
     })();
-function getHighScore() {
-    document.getElementById('high-score').addEventListener('click', function () {
-        if (localStorage.jsSnakeHighScore == undefined) alert('You have not played this game yet!');
-        else
-            alert('Your current high score is ' + localStorage.jsSnakeHighScore + '.');
-    });
-}
-getHighScore();

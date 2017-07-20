@@ -13,12 +13,6 @@ body {
 	padding:0px;
 }
 
-#high-score {
-    position: relative;
-    left: 200px;
-    bottom: 50px;
-}
-
 #mode-wrapper {
     color: #ffffff;
     font-family: Verdana, arial, helvetica, sans-serif; 
@@ -134,7 +128,7 @@ a.snake-link:hover {
     top: 50%;
     left: 50%;
     width: 300px;
-    height: 130px;
+    height: 160px;
     margin-top: -75px;
     margin-left: -158px;
     text-align: center;
