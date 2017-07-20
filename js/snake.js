@@ -764,7 +764,11 @@ SNAKE.Board = SNAKE.Board || (function () {
 				"<select id='chosenSnakeSpeed'><option id='Easy' value='100' selected>Easy</option> <option id='Medium' value='75'>Medium</option> <option id='Difficult' value='50'>Difficult</option></select> <br /><br />";
 				
 				var highScoreTxt = document.createElement("div");
-                highScoreTxt.innerHTML = "<br /><button id='high-score'>Get your current high score for this game.</button>";				
+                highScoreTxt.innerHTML = "<br /><button id='high-score'>Get your current high score for this game.</button>";
+
+                var divSensor = document.createElement("div");
+                var sensor = me.getSensorElement();
+                divSensor.appendChild(sensor);
 
                 var welcomeStart = document.createElement("button");
                 welcomeStart.appendChild(document.createTextNode("Play Game"));
@@ -787,6 +791,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 SNAKE.addEventListener(welcomeStart, "click", loadGame, false);
 
                 tmpElm.appendChild(welcomeTxt);
+                tmpElm.appendChild(divSensor);
                 tmpElm.appendChild(welcomeStart);
 				tmpElm.appendChild(highScoreTxt);
                 return tmpElm;
@@ -802,8 +807,12 @@ SNAKE.Board = SNAKE.Board || (function () {
                 tryAgainTxt.innerHTML = "JavaScript Snake<p></p>You died :(.<p></p>";
 				
 				var modeSpeedTxt = document.createElement("div");
-                modeSpeedTxt.innerHTML = "<select onchange='getModeTryAgain()' id='chosenSnakeSpeedTryAgain'><option id='EasyTry' value='100'>Easy</option> <option id='MediumTry' value='75'>Medium</option> <option id='DifficultTry' value='50'>Difficult</option></select> <br /><br />";;		
-				
+                modeSpeedTxt.innerHTML = "<select onchange='getModeTryAgain()' id='chosenSnakeSpeedTryAgain'><option id='EasyTry' value='100'>Easy</option> <option id='MediumTry' value='75'>Medium</option> <option id='DifficultTry' value='50'>Difficult</option></select> <br /><br />";;
+
+                var divSensor = document.createElement("div");
+                var sensor = me.getSensorElement();
+                divSensor.appendChild(sensor);
+
                 var tryAgainStart = document.createElement("button");
                 tryAgainStart.appendChild(document.createTextNode("Play Again?"));	
 
@@ -833,10 +842,32 @@ SNAKE.Board = SNAKE.Board || (function () {
                 SNAKE.addEventListener(tryAgainStart, "click", reloadGame, false);
                 tmpElm.appendChild(tryAgainTxt);
 				tmpElm.appendChild(modeSpeedTxt);
+                tmpElm.appendChild(divSensor);
                 tmpElm.appendChild(tryAgainStart);
 				tmpElm.appendChild(highScoreTxt);
                 return tmpElm;
             }
+
+            me.getSensorElement = function () {
+                var sensorSelection = document.createElement("select");
+                var sensorKeyboard = document.createElement("option");
+                sensorKeyboard.appendChild(document.createTextNode("Keyboard"));
+                sensorSelection.appendChild(sensorKeyboard);
+                var sensorAccelerometer = document.createElement("option");
+                sensorAccelerometer.appendChild(document.createTextNode("Accelerometer"));
+                sensorSelection.appendChild(sensorAccelerometer);
+                var sensorTouchScreen = document.createElement("option");
+                sensorTouchScreen.appendChild(document.createTextNode("Touch Screen"));
+                sensorSelection.appendChild(sensorTouchScreen);
+
+                var changeSensorEvent = function (evt) {
+                    console.log(evt);
+                };
+
+                SNAKE.addEventListener(sensorSelection, "click", changeSensorEvent, false);
+
+                return sensorSelection;
+            };
 
             // ---------------------------------------------------------------------
             // public functions
@@ -1146,10 +1177,15 @@ SNAKE.Board = SNAKE.Board || (function () {
                     }
                 };
 
-                // Search for #listenerX to see where this is removed
-                SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
-                SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
-                SNAKE.addEventListener(elmContainer, "touchstart", myTouchListener, false)
+                if (selectedSensor === SENSOR_KEYBOARD){
+                    SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
+                }
+                else if (selectedSensor === SENSOR_ACCELEROMETER) {
+                    SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
+                }
+                else if (selectedSensor === SENSOR_ACCELEROMETER) {
+                    SNAKE.addEventListener(elmContainer, "touchstart", myTouchListener, false)
+                }
             };
 
 
