@@ -315,6 +315,33 @@ SNAKE.Snake = SNAKE.Snake || (function () {
 
             };
 
+            function getClientWidth() {
+                var myWidth = 0;
+                if (typeof window.innerWidth === "number") {
+                    myWidth = window.innerWidth;//Non-IE
+                } else if (document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight )) {
+                    myWidth = document.documentElement.clientWidth;//IE 6+ in 'standards compliant mode'
+                } else if (document.body && ( document.body.clientWidth || document.body.clientHeight )) {
+                    myWidth = document.body.clientWidth;//IE 4 compatible
+                }
+                return myWidth;
+            }
+
+            /*
+             This function returns the height of the available screen real estate that we have
+             */
+            function getClientHeight() {
+                var myHeight = 0;
+                if (typeof window.innerHeight === "number") {
+                    myHeight = window.innerHeight;//Non-IE
+                } else if (document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight )) {
+                    myHeight = document.documentElement.clientHeight;//IE 6+ in 'standards compliant mode'
+                } else if (document.body && ( document.body.clientWidth || document.body.clientHeight )) {
+                    myHeight = document.body.clientHeight;//IE 4 compatible
+                }
+                return myHeight;
+            }
+
 
             /**
              * This method is executed for each move of the snake. It determines where the snake will go and what will happen to it. This method needs to run quickly.
@@ -853,18 +880,42 @@ SNAKE.Board = SNAKE.Board || (function () {
                 var sensorKeyboard = document.createElement("option");
                 sensorKeyboard.appendChild(document.createTextNode("Keyboard"));
                 sensorSelection.appendChild(sensorKeyboard);
+                if (selectedSensor === SENSOR_KEYBOARD){
+                    sensorKeyboard.selected = true;
+                }
                 var sensorAccelerometer = document.createElement("option");
                 sensorAccelerometer.appendChild(document.createTextNode("Accelerometer"));
                 sensorSelection.appendChild(sensorAccelerometer);
+                if (selectedSensor === SENSOR_ACCELEROMETER){
+                    sensorAccelerometer.selected = true;
+                }
                 var sensorTouchScreen = document.createElement("option");
                 sensorTouchScreen.appendChild(document.createTextNode("Touch Screen"));
                 sensorSelection.appendChild(sensorTouchScreen);
+                if (selectedSensor === SENSOR_TOUCH_SCREEN){
+                    sensorTouchScreen.selected = true;
+                }
 
                 var changeSensorEvent = function (evt) {
-                    console.log(evt);
+                    SNAKE.removeEventListener(elmContainer, "keydown", myKeyListener, false);
+                    SNAKE.removeEventListener(window, "devicemotion", myDeviceOrientationListener, false);
+                    SNAKE.removeEventListener(window, "devicemotion", myTouchListener, false);
+
+                   if (sensorSelection.options[sensorSelection.selectedIndex] === sensorKeyboard){
+                       selectedSensor = SENSOR_KEYBOARD;
+                       SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
+                   }
+                   else if (sensorSelection.options[sensorSelection.selectedIndex] === sensorAccelerometer){
+                       selectedSensor = SENSOR_ACCELEROMETER;
+                       SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
+                   }
+                   else if (sensorSelection.options[sensorSelection.selectedIndex] === sensorTouchScreen){
+                       selectedSensor = SENSOR_TOUCH_SCREEN;
+                       SNAKE.addEventListener(elmContainer, "touchstart", myTouchListener, false);
+                   }
                 };
 
-                SNAKE.addEventListener(sensorSelection, "click", changeSensorEvent, false);
+                SNAKE.addEventListener(sensorSelection, "change", changeSensorEvent, false);
 
                 return sensorSelection;
             };
@@ -1176,16 +1227,6 @@ SNAKE.Board = SNAKE.Board || (function () {
                         }
                     }
                 };
-
-                if (selectedSensor === SENSOR_KEYBOARD){
-                    SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
-                }
-                else if (selectedSensor === SENSOR_ACCELEROMETER) {
-                    SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
-                }
-                else if (selectedSensor === SENSOR_ACCELEROMETER) {
-                    SNAKE.addEventListener(elmContainer, "touchstart", myTouchListener, false)
-                }
             };
 
 
