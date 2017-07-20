@@ -14,6 +14,10 @@ var SNAKE_DIRECTION_RIGHT = 1;
 var SNAKE_DIRECTION_DOWN = 2;
 var SNAKE_DIRECTION_LEFT = 3;
 
+var SENSOR_KEYBOARD = 0;
+var SENSOR_ACCELEROMETER = 1;
+var SENSOR_TOUCH_SCREEN = 2;
+
 /**
  * @module Snake
  * @class SNAKE
@@ -59,6 +63,7 @@ SNAKE.removeEventListener = (function () {
         };
     }
 })();
+
 
 /**
  * This class manages the snake which will reside inside of a SNAKE.Board object.
@@ -316,8 +321,6 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     return;
                 }
 
-                console.log(getClientWidth().toString() + " - " + getClientHeight().toString());
-
                 var lastMove = moveQueue[0] || currentDirection;
 
                 var touchX = touchEvent.touches[0].clientX;
@@ -337,38 +340,6 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 }
 
             };
-
-
-            /*
-             This function returns the width of the available screen real estate that we have
-             */
-            function getClientWidth() {
-                var myWidth = 0;
-                if (typeof window.innerWidth === "number") {
-                    myWidth = window.innerWidth;//Non-IE
-                } else if (document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight )) {
-                    myWidth = document.documentElement.clientWidth;//IE 6+ in 'standards compliant mode'
-                } else if (document.body && ( document.body.clientWidth || document.body.clientHeight )) {
-                    myWidth = document.body.clientWidth;//IE 4 compatible
-                }
-                return myWidth;
-            }
-
-            /*
-             This function returns the height of the available screen real estate that we have
-             */
-            function getClientHeight() {
-                var myHeight = 0;
-                if (typeof window.innerHeight === "number") {
-                    myHeight = window.innerHeight;//Non-IE
-                } else if (document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight )) {
-                    myHeight = document.documentElement.clientHeight;//IE 6+ in 'standards compliant mode'
-                } else if (document.body && ( document.body.clientWidth || document.body.clientHeight )) {
-                    myHeight = document.body.clientHeight;//IE 4 compatible
-                }
-                return myHeight;
-            }
-
 
 
             /**
@@ -732,7 +703,9 @@ SNAKE.Board = SNAKE.Board || (function () {
                 boardState = BOARD_STATE_GAME_STARTING,
                 myKeyListener,
                 myDeviceOrientationListener,
+                myTouchListener,
                 isPaused = false,//note: both the board and the snake can be paused
+                selectedSensor = SENSOR_KEYBOARD,
                 // Board components
                 elmContainer, elmPlayingField, elmAboutPanel, elmLengthPanel, elmWelcome, elmTryAgain, elmPauseScreen;
 
@@ -812,10 +785,9 @@ SNAKE.Board = SNAKE.Board || (function () {
                 if (config.fullScreen) {
                     fullScreenText = "On Windows, press F11 to play in Full Screen mode.";
                 }
-                welcomeTxt.innerHTML = "JavaScript Snake<p></p>Use the <strong>arrow keys</strong> on your keyboard to play the game. " + fullScreenText + "<p></p>" +
+                welcomeTxt.innerHTML = "JavaScript Snake<p></p>Use the arrow keys, your accelerometer or touching the edges of your screen to play the game. " + fullScreenText + "<p></p>" +
 				"<select id='chosenSnakeSpeed'><option id='Easy' value='10' selected>Easy</option> <option id='Medium' value='50'>Medium</option> <option id='Difficult' value='500'>Difficult</option></select> <br /><br />";
-					
-				
+
                 var welcomeStart = document.createElement("button");
                 welcomeStart.appendChild(document.createTextNode("Play Game"));
                 var loadGame = function () {
@@ -906,6 +878,7 @@ SNAKE.Board = SNAKE.Board || (function () {
             me.resetBoard = function () {
                 SNAKE.removeEventListener(elmContainer, "keydown", myKeyListener, false);
                 SNAKE.removeEventListener(window, "devicemotion", myDeviceOrientationListener, false);
+                SNAKE.removeEventListener(window, "devicemotion", myTouchListener, false);
                 mySnake.reset();
                 elmLengthPanel.innerHTML = "Length: 1";
                 me.setupPlayingField();
@@ -1080,6 +1053,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 //getMode('Medium', 75);
                 //getMode('Difficult', 50);
 				getMode('chosenSnakeSpeed');
+
                 myKeyListener = function (evt) {
                     if (!evt) var evt = window.event;
                     var keyNum = (evt.which) ? evt.which : evt.keyCode;
@@ -1153,7 +1127,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                     return false;
                 };
 
-                myTouchListener = function(evt){
+                myTouchListener = function(evt) {
                     if(evt.touches.length == 1){
                         if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
                             me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
