@@ -876,6 +876,7 @@ SNAKE.Board = SNAKE.Board || (function () {
             }
 
             me.getSensorElement = function () {
+                selectedSensor = SENSOR_KEYBOARD;
                 var sensorSelection = document.createElement("select");
                 var sensorKeyboard = document.createElement("option");
                 sensorKeyboard.appendChild(document.createTextNode("Keyboard"));
