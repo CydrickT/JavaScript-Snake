@@ -250,6 +250,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 if (isDead || isPaused) {
                     return;
                 }
+                var snakeLength = me.snakeLength;
 
                 var lastMove = moveQueue[0] || currentDirection;
 
@@ -262,7 +263,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 if (absOrientationX >= 2 || absOrientationY >= 2){
                     if (absOrientationX > absOrientationY){
                         // Up/Down movement
-                        if ((lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN)) {
+                        if (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN) {
                             if (orientationX > 0) {
                                 moveQueue.unshift(SNAKE_DIRECTION_LEFT);
                             } else {
@@ -272,7 +273,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     }
                     else {
                         // Left/Right movement
-                        if ((lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT)) {
+                        if (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT) {
                             if (orientationY > 0) {
                                 moveQueue.unshift(SNAKE_DIRECTION_DOWN);
                             }
@@ -294,22 +295,23 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 else if (touchEvent.touches.length !== 1) {
                     return;
                 }
+                var snakeLength = me.snakeLength;
 
                 var lastMove = moveQueue[0] || currentDirection;
 
                 var touchX = touchEvent.touches[0].clientX;
                 var touchY = touchEvent.touches[0].clientY;
 
-                if (touchX < getClientWidth() * 0.25 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN)){
+                if (touchX < getClientWidth() * 0.25 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN || snakeLength === 1)){
                     moveQueue.unshift(SNAKE_DIRECTION_LEFT);
                 }
-                else if (touchX > getClientWidth() * 0.75 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN)){
+                else if (touchX > getClientWidth() * 0.75 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN || snakeLength === 1)){
                     moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
                 }
-                else if (touchY < getClientHeight() * 0.3 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT)){
+                else if (touchY < getClientHeight() * 0.3 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT || snakeLength === 1)){
                     moveQueue.unshift(SNAKE_DIRECTION_UP);
                 }
-                else if (touchY > getClientHeight() * 0.6 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT)){
+                else if (touchY > getClientHeight() * 0.6 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT || snakeLength === 1)){
                     moveQueue.unshift(SNAKE_DIRECTION_DOWN);
                 }
 
@@ -793,15 +795,20 @@ SNAKE.Board = SNAKE.Board || (function () {
 				var highScoreTxt = document.createElement("div");
                 highScoreTxt.innerHTML = "<br /><button id='high-score'>Get your current high score for this game.</button>";
 
-                var divSensor = document.createElement("div");
-                var sensor = me.getSensorElement();
-                divSensor.appendChild(sensor);
+                var sensorTxt = document.createElement("div");
+                sensorTxt.innerHTML = "<select id='chosenSensor'><option value='" + SENSOR_KEYBOARD + "'>Keyboard</option><option value='" + SENSOR_ACCELEROMETER + "'>Accelerometer</option><option value='" + SENSOR_TOUCH_SCREEN + "'>Touch Screen</option></select>"
+
 
                 var welcomeStart = document.createElement("button");
                 welcomeStart.appendChild(document.createTextNode("Play Game"));
                 var loadGame = function () {
                     SNAKE.removeEventListener(window, "keyup", kbShortcut, false);
+
                     tmpElm.style.display = "none";
+
+                    var sensorSelect = document.getElementById("chosenSensor");
+                    me.setSensorListeners(sensorSelect.options[sensorSelect.selectedIndex].value);
+
                     me.setBoardState(BOARD_STATE_GAME_STARTING);
                     me.getBoardContainer().focus();
                 };
@@ -818,7 +825,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 SNAKE.addEventListener(welcomeStart, "click", loadGame, false);
 
                 tmpElm.appendChild(welcomeTxt);
-                tmpElm.appendChild(divSensor);
+                tmpElm.appendChild(sensorTxt);
                 tmpElm.appendChild(welcomeStart);
 				tmpElm.appendChild(highScoreTxt);
                 return tmpElm;
@@ -836,9 +843,8 @@ SNAKE.Board = SNAKE.Board || (function () {
 				var modeSpeedTxt = document.createElement("div");
                 modeSpeedTxt.innerHTML = "<select onchange='getModeTryAgain()' id='chosenSnakeSpeedTryAgain'><option id='EasyTry' value='100'>Easy</option> <option id='MediumTry' value='75'>Medium</option> <option id='DifficultTry' value='50'>Difficult</option></select> <br /><br />";;
 
-                var divSensor = document.createElement("div");
-                var sensor = me.getSensorElement();
-                divSensor.appendChild(sensor);
+                var sensorTxt = document.createElement("div");
+                sensorTxt.innerHTML = "<select id='chosenSensorRetry'><option value='" + SENSOR_KEYBOARD + "'>Keyboard</option><option value='" + SENSOR_ACCELEROMETER + "'>Accelerometer</option><option value='" + SENSOR_TOUCH_SCREEN + "'>Touch Screen</option></select>"
 
                 var tryAgainStart = document.createElement("button");
                 tryAgainStart.appendChild(document.createTextNode("Play Again?"));	
@@ -848,6 +854,10 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 var reloadGame = function () {
                     tmpElm.style.display = "none";
+
+                    var sensorSelect = document.getElementById("chosenSensorRetry");
+                    me.setSensorListeners(sensorSelect.options[sensorSelect.selectedIndex].value);
+
                     me.resetBoard();
                     me.setBoardState(BOARD_STATE_GAME_STARTING);
                     me.getBoardContainer().focus();
@@ -869,61 +879,35 @@ SNAKE.Board = SNAKE.Board || (function () {
                 SNAKE.addEventListener(tryAgainStart, "click", reloadGame, false);
                 tmpElm.appendChild(tryAgainTxt);
 				tmpElm.appendChild(modeSpeedTxt);
-                tmpElm.appendChild(divSensor);
+                tmpElm.appendChild(sensorTxt);
                 tmpElm.appendChild(tryAgainStart);
 				tmpElm.appendChild(highScoreTxt);
                 return tmpElm;
             }
 
-            me.getSensorElement = function () {
-                selectedSensor = SENSOR_KEYBOARD;
-                var sensorSelection = document.createElement("select");
-                var sensorKeyboard = document.createElement("option");
-                sensorKeyboard.appendChild(document.createTextNode("Keyboard"));
-                sensorSelection.appendChild(sensorKeyboard);
-                if (selectedSensor === SENSOR_KEYBOARD){
-                    sensorKeyboard.selected = true;
-                }
-                var sensorAccelerometer = document.createElement("option");
-                sensorAccelerometer.appendChild(document.createTextNode("Accelerometer"));
-                sensorSelection.appendChild(sensorAccelerometer);
-                if (selectedSensor === SENSOR_ACCELEROMETER){
-                    sensorAccelerometer.selected = true;
-                }
-                var sensorTouchScreen = document.createElement("option");
-                sensorTouchScreen.appendChild(document.createTextNode("Touch Screen"));
-                sensorSelection.appendChild(sensorTouchScreen);
-                if (selectedSensor === SENSOR_TOUCH_SCREEN){
-                    sensorTouchScreen.selected = true;
-                }
-
-                var changeSensorEvent = function (evt) {
-                    SNAKE.removeEventListener(elmContainer, "keydown", myKeyListener, false);
-                    SNAKE.removeEventListener(window, "devicemotion", myDeviceOrientationListener, false);
-                    SNAKE.removeEventListener(window, "devicemotion", myTouchListener, false);
-
-                   if (sensorSelection.options[sensorSelection.selectedIndex] === sensorKeyboard){
-                       selectedSensor = SENSOR_KEYBOARD;
-                       SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
-                   }
-                   else if (sensorSelection.options[sensorSelection.selectedIndex] === sensorAccelerometer){
-                       selectedSensor = SENSOR_ACCELEROMETER;
-                       SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
-                   }
-                   else if (sensorSelection.options[sensorSelection.selectedIndex] === sensorTouchScreen){
-                       selectedSensor = SENSOR_TOUCH_SCREEN;
-                       SNAKE.addEventListener(elmContainer, "touchstart", myTouchListener, false);
-                   }
-                };
-
-                SNAKE.addEventListener(sensorSelection, "change", changeSensorEvent, false);
-
-                return sensorSelection;
-            };
 
             // ---------------------------------------------------------------------
             // public functions
             // ---------------------------------------------------------------------
+
+
+            me.setSensorListeners = function(sensor){
+
+                alert("Sensor " + sensor);
+
+                if (sensor == SENSOR_KEYBOARD){
+                    alert("Keyboard");
+                    selectedSensor = SENSOR_KEYBOARD;
+                }
+                else if (sensor == SENSOR_ACCELEROMETER){
+                    alert("Accelerometer");
+                    selectedSensor = SENSOR_ACCELEROMETER;
+                }
+                else if (sensor == SENSOR_TOUCH_SCREEN){
+                    alert("TouchScreen");
+                    selectedSensor = SENSOR_TOUCH_SCREEN;
+                }
+            };
 
             me.setPaused = function (val) {
                 isPaused = val;
@@ -956,13 +940,10 @@ SNAKE.Board = SNAKE.Board || (function () {
 			}
 			
 			getHighScoreTryAgain = function () {
-				//document.getElementById('high-score-try').addEventListener('click', function () {
 					if (localStorage.jsSnakeHighScore == undefined) alert('You have not played this game yet!');
 					else
 						alert('Your current high score is ' + localStorage.jsSnakeHighScore + '.');
-				//});
 			}
-			//getHighScore();
 
             /**
              * Resets the playing board for a new game.
@@ -1145,7 +1126,11 @@ SNAKE.Board = SNAKE.Board || (function () {
                 }
 
                 getMode('chosenSnakeSpeed');
+
                 myKeyListener = function (evt) {
+                    if (selectedSensor !== SENSOR_KEYBOARD)
+                        return;
+
                     if (!evt) var evt = window.event;
                     var keyNum = (evt.which) ? evt.which : evt.keyCode;
 
@@ -1196,6 +1181,9 @@ SNAKE.Board = SNAKE.Board || (function () {
                 };
 
                 myDeviceOrientationListener = function(evt) {
+                    if (selectedSensor !== SENSOR_ACCELEROMETER)
+                        return;
+
                     if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
                         SNAKE.removeEventListener(elmContainer, "devicemotion",  mySnake.handleDeviceOrientation, false);
                         var orientationX = evt.accelerationIncludingGravity.x;
@@ -1219,6 +1207,9 @@ SNAKE.Board = SNAKE.Board || (function () {
                 };
 
                 myTouchListener = function(evt) {
+                    if (selectedSensor !== SENSOR_TOUCH_SCREEN)
+                        return;
+
                     if(evt.touches.length == 1){
                         if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
                             me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
@@ -1227,7 +1218,21 @@ SNAKE.Board = SNAKE.Board || (function () {
                             mySnake.handleDeviceTouch(evt);
                         }
                     }
+
+                    evt.cancelBubble = true;
+                    if (evt.stopPropagation) {
+                        evt.stopPropagation();
+                    }
+                    if (evt.preventDefault) {
+                        evt.preventDefault();
+                    }
+                    return false;
                 };
+
+                SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
+                SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
+                SNAKE.addEventListener(elmContainer, "touchstart", myTouchListener, false)
+
             };
 
 
