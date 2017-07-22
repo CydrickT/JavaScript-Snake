@@ -1127,14 +1127,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                             mySnake.handleDeviceTouch(evt);
                         }
                     }
-
-                    evt.cancelBubble = true;
-                    if (evt.stopPropagation) {
-                        evt.stopPropagation();
-                    }
-                    if (evt.preventDefault) {
-                        evt.preventDefault();
-                    }
+                    
                     return false;
                 };
 
