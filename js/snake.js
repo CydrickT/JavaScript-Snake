@@ -255,37 +255,37 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     var posOfDiagonal = slopeOfDiagonals * touchPositionX + 0;
                     if (touchPositionY < posOfDiagonal && lastMoveHorizontal){
                         moveQueue.unshift(SNAKE_DIRECTIONS.UP);
-                    }else if (touchPositionY > posOfDiagonal && lastMoveVertical){
+                    }else if (touchPositionY >= posOfDiagonal && lastMoveVertical){
                         moveQueue.unshift(SNAKE_DIRECTIONS.LEFT);
                     }
                 }
-                else if (touchPositionX > (screenWidth / 2) && touchPositionY < (screenHeight / 2)){
+                else if (touchPositionX >= (screenWidth / 2) && touchPositionY < (screenHeight / 2)){
                     //Top-Right corner
                     //y = a*x + b
                     var posOfDiagonal = -slopeOfDiagonals * touchPositionX + screenHeight;
                     if(touchPositionY < posOfDiagonal && lastMoveHorizontal){
                         moveQueue.unshift(SNAKE_DIRECTIONS.UP);
-                    } else if (touchPositionY > posOfDiagonal && lastMoveVertical){
+                    } else if (touchPositionY >= posOfDiagonal && lastMoveVertical){
                         moveQueue.unshift(SNAKE_DIRECTIONS.RIGHT);
                     }
                 }
-                else if (touchPositionX < (screenWidth / 2) && touchPositionY > (screenHeight / 2)){
+                else if (touchPositionX < (screenWidth / 2) && touchPositionY >= (screenHeight / 2)){
                     //Bottom-Left corner
                     //y = a*x + b
                     var posOfDiagonal = -slopeOfDiagonals * touchPositionX + screenHeight;
                     if(touchPositionY < posOfDiagonal && lastMoveVertical){
                         moveQueue.unshift(SNAKE_DIRECTIONS.LEFT);
-                    } else if (touchPositionY > posOfDiagonal && lastMoveHorizontal){
+                    } else if (touchPositionY >= posOfDiagonal && lastMoveHorizontal){
                         moveQueue.unshift(SNAKE_DIRECTIONS.DOWN);
                     }
                 }
-                else if (touchPositionX > (screenWidth / 2) && touchPositionY > (screenHeight / 2)){
+                else if (touchPositionX >= (screenWidth / 2) && touchPositionY >= (screenHeight / 2)){
                     //Bottom-Right corner
                     //y = a*x + b
                     var posOfDiagonal = slopeOfDiagonals * touchPositionX + 0;
                     if (touchPositionY < posOfDiagonal && lastMoveVertical){
                         moveQueue.unshift(SNAKE_DIRECTIONS.RIGHT);
-                    } else if (touchPositionY > posOfDiagonal && lastMoveHorizontal){
+                    } else if (touchPositionY >= posOfDiagonal && lastMoveHorizontal){
                         moveQueue.unshift(SNAKE_DIRECTIONS.DOWN);
                     }
                 }
