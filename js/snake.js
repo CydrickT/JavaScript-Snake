@@ -608,7 +608,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 elmPlayingField.setAttribute("id", "playingField");
                 elmPlayingField.className = "snake-playing-field";
 
-                SNAKE.addEventListener(elmPlayingField, "click", function () {
+                UTILS.addEventListener(elmPlayingField, "click", function () {
                     elmContainer.focus();
                 }, false);
 
@@ -626,7 +626,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 elmWelcome = createWelcomeElement();
                 elmTryAgain = createTryAgainElement();
 
-                SNAKE.addEventListener(elmContainer, "keyup", function (evt) {
+                UTILS.addEventListener(elmContainer, "keyup", function (evt) {
                     if (!evt) var evt = window.event;
                     evt.cancelBubble = true;
                     if (evt.stopPropagation) {
@@ -686,7 +686,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 var welcomeStart = document.createElement("button");
                 welcomeStart.appendChild(document.createTextNode("Play Game"));
                 var loadGame = function () {
-                    SNAKE.removeEventListener(window, "keyup", kbShortcut, false);
+                    UTILS.removeEventListener(window, "keyup", kbShortcut, false);
 
                     tmpElm.style.display = "none";
 
@@ -705,8 +705,8 @@ SNAKE.Board = SNAKE.Board || (function () {
                         loadGame();
                     }
                 };
-                SNAKE.addEventListener(window, "keyup", kbShortcut, false);
-                SNAKE.addEventListener(welcomeStart, "click", loadGame, false);
+                UTILS.addEventListener(window, "keyup", kbShortcut, false);
+                UTILS.addEventListener(welcomeStart, "click", loadGame, false);
 
                 tmpElm.appendChild(welcomeTxt);
                 tmpElm.appendChild(sensorTxt);
@@ -758,9 +758,9 @@ SNAKE.Board = SNAKE.Board || (function () {
                         reloadGame();
                     }
                 };
-                SNAKE.addEventListener(window, "keyup", kbTryAgainShortcut, true);
+                UTILS.addEventListener(window, "keyup", kbTryAgainShortcut, true);
 
-                SNAKE.addEventListener(tryAgainStart, "click", reloadGame, false);
+                UTILS.addEventListener(tryAgainStart, "click", reloadGame, false);
                 tmpElm.appendChild(tryAgainTxt);
 				tmpElm.appendChild(modeSpeedTxt);
                 tmpElm.appendChild(sensorTxt);
@@ -829,9 +829,9 @@ SNAKE.Board = SNAKE.Board || (function () {
              * @method resetBoard
              */
             me.resetBoard = function () {
-                SNAKE.removeEventListener(elmContainer, "keydown", myKeyListener, false);
-                SNAKE.removeEventListener(window, "devicemotion", myDeviceOrientationListener, false);
-                SNAKE.removeEventListener(window, "devicemotion", myTouchListener, false);
+                UTILS.removeEventListener(elmContainer, "keydown", myKeyListener, false);
+                UTILS.removeEventListener(window, "devicemotion", myDeviceOrientationListener, false);
+                UTILS.removeEventListener(window, "devicemotion", myTouchListener, false);
                 mySnake.reset();
                 elmLengthPanel.innerHTML = "Length: 1";
                 me.setupPlayingField();
@@ -918,8 +918,8 @@ SNAKE.Board = SNAKE.Board || (function () {
                 if (config.fullScreen === true) {
                     cTop = 0;
                     cLeft = 0;
-                    cWidth = UTILS.getClientWidth() - 5;
-                    cHeight = UTILS.getClientHeight() - 5;
+                    cWidth = getClientWidth() - 5;
+                    cHeight = getClientHeight() - 5;
                     document.body.style.backgroundColor = "#FC5454";
                 } else {
                     cTop = config.top;
@@ -1019,7 +1019,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                         } // if not an arrow key, leave
 
                         // This removes the listener added at the #listenerX line
-                        SNAKE.removeEventListener(elmContainer, "keydown", myKeyListener, false);
+                        UTILS.removeEventListener(elmContainer, "keydown", myKeyListener, false);
 
                         myKeyListener = function (evt) {
                             if (!evt) var evt = window.event;
@@ -1041,7 +1041,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                             }
                             return false;
                         };
-                        SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
+                        UTILS.addEventListener(elmContainer, "keydown", myKeyListener, false);
 
                         mySnake.rebirth();
                         mySnake.handleArrowKeys(keyNum);
@@ -1064,13 +1064,13 @@ SNAKE.Board = SNAKE.Board || (function () {
                         return;
 
                     if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
-                        SNAKE.removeEventListener(elmContainer, "devicemotion",  mySnake.handleDeviceOrientation, false);
+                        UTILS.removeEventListener(elmContainer, "devicemotion",  mySnake.handleDeviceOrientation, false);
                         var orientationX = evt.accelerationIncludingGravity.x;
                         var orientationY = evt.accelerationIncludingGravity.y;
                         if (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3){
                             me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                             mySnake.go();
-                            SNAKE.addEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
+                            UTILS.addEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
                         }
 
                     }
@@ -1093,7 +1093,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                         if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
                             me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
                             mySnake.go();
-                            SNAKE.addEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
+                            UTILS.addEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
                             mySnake.handleDeviceTouch(evt);
                         }
                     }
@@ -1108,9 +1108,9 @@ SNAKE.Board = SNAKE.Board || (function () {
                     return false;
                 };
 
-                SNAKE.addEventListener(elmContainer, "keydown", myKeyListener, false);
-                SNAKE.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
-                SNAKE.addEventListener(elmContainer, "touchstart", myTouchListener, false)
+                UTILS.addEventListener(elmContainer, "keydown", myKeyListener, false);
+                UTILS.addEventListener(window, "devicemotion", myDeviceOrientationListener, false);
+                UTILS.addEventListener(elmContainer, "touchstart", myTouchListener, false)
 
             };
 
@@ -1148,7 +1148,7 @@ SNAKE.Board = SNAKE.Board || (function () {
             config.height = (typeof config.height === "undefined") ? 400 : config.height;
 
             if (config.fullScreen) {
-                SNAKE.addEventListener(window, "resize", function () {
+                UTILS.addEventListener(window, "resize", function () {
                     me.setupPlayingField();
                 }, false);
             }
