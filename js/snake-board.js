@@ -135,7 +135,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 fullScreenText = "On Windows, press F11 to play in Full Screen mode.";
             }
 
-            welcomeTxt.innerHTML = "JavaScript Snake<p></p>Use the <strong>arrow keys</strong> on your keyboard to play the game. " + fullScreenText + "<p></p>" +
+            welcomeTxt.innerHTML = "JavaScript Snake<p></p>Use the arrow keys, the accelerometer (laying your device flat and tilting it) or the edges of your touch screen to play the game. " + fullScreenText + "<p></p>" +
                 "<select id='chosenSnakeSpeed'><option id='Easy' value='100' selected>Easy</option> <option id='Medium' value='75'>Medium</option> <option id='Difficult' value='50'>Difficult</option></select> <br /><br />";
 
             var highScoreTxt = document.createElement("div");
