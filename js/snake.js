@@ -570,36 +570,6 @@ SNAKE.Board = SNAKE.Board || (function () {
             return (highestIndex + 1);
         }
 
-        /*
-         This function returns the width of the available screen real estate that we have
-         */
-        function getClientWidth() {
-            var myWidth = 0;
-            if (typeof window.innerWidth === "number") {
-                myWidth = window.innerWidth;//Non-IE
-            } else if (document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight )) {
-                myWidth = document.documentElement.clientWidth;//IE 6+ in 'standards compliant mode'
-            } else if (document.body && ( document.body.clientWidth || document.body.clientHeight )) {
-                myWidth = document.body.clientWidth;//IE 4 compatible
-            }
-            return myWidth;
-        }
-
-        /*
-         This function returns the height of the available screen real estate that we have
-         */
-        function getClientHeight() {
-            var myHeight = 0;
-            if (typeof window.innerHeight === "number") {
-                myHeight = window.innerHeight;//Non-IE
-            } else if (document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight )) {
-                myHeight = document.documentElement.clientHeight;//IE 6+ in 'standards compliant mode'
-            } else if (document.body && ( document.body.clientWidth || document.body.clientHeight )) {
-                myHeight = document.body.clientHeight;//IE 4 compatible
-            }
-            return myHeight;
-        }
-
         // -------------------------------------------------------------------------
         // Contructor + public and private definitions
         // -------------------------------------------------------------------------
@@ -948,8 +918,8 @@ SNAKE.Board = SNAKE.Board || (function () {
                 if (config.fullScreen === true) {
                     cTop = 0;
                     cLeft = 0;
-                    cWidth = getClientWidth() - 5;
-                    cHeight = getClientHeight() - 5;
+                    cWidth = UTILS.getClientWidth() - 5;
+                    cHeight = UTILS.getClientHeight() - 5;
                     document.body.style.backgroundColor = "#FC5454";
                 } else {
                     cTop = config.top;
