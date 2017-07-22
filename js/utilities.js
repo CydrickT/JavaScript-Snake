@@ -52,7 +52,7 @@ SNAKE.removeEventListener = (function () {
 })();
 
 
-var getClientWidth = (function () {
+function getClientWidth() {
     var myWidth = 0;
     if (typeof window.innerWidth === "number") {
         myWidth = window.innerWidth;//Non-IE
@@ -62,12 +62,12 @@ var getClientWidth = (function () {
         myWidth = document.body.clientWidth;//IE 4 compatible
     }
     return myWidth;
-})();
+}
 
 /*
  This function returns the height of the available screen real estate that we have
  */
-var getClientHeight = (function () {
+function getClientHeight() {
     var myHeight = 0;
     if (typeof window.innerHeight === "number") {
         myHeight = window.innerHeight;//Non-IE
@@ -77,4 +77,4 @@ var getClientHeight = (function () {
         myHeight = document.body.clientHeight;//IE 4 compatible
     }
     return myHeight;
-})();
+}
