@@ -246,13 +246,16 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 var screenHeight = UTILS.getClientHeight();
                 var slopeOfDiagonals = screenHeight/screenWidth;
 
+                var lastMoveHorizontal = (lastMove === SNAKE_DIRECTIONS.LEFT || lastMove === SNAKE_DIRECTIONS.RIGHT || snakeLength === 1);
+                var lastMoveVertical = (lastMove === SNAKE_DIRECTIONS.UP || lastMove === SNAKE_DIRECTIONS.DOWN || snakeLength === 1);
+
                 if (touchPositionX < (screenWidth / 2) && touchPositionY < (screenHeight / 2)){
                     //Top-Left corner
                     //y = a*x + b
                     var posOfDiagonal = slopeOfDiagonals * touchPositionX + 0;
-                    if (touchPositionY < posOfDiagonal && (lastMove === SNAKE_DIRECTIONS.LEFT || lastMove === SNAKE_DIRECTIONS.RIGHT || snakeLength === 1)){
+                    if (touchPositionY < posOfDiagonal && lastMoveHorizontal){
                         moveQueue.unshift(SNAKE_DIRECTIONS.UP);
-                    }else if (touchPositionY > posOfDiagonal && (lastMove === SNAKE_DIRECTIONS.UP || lastMove === SNAKE_DIRECTIONS.DOWN || snakeLength === 1)){
+                    }else if (touchPositionY > posOfDiagonal && lastMoveVertical){
                         moveQueue.unshift(SNAKE_DIRECTIONS.LEFT);
                     }
                 }
@@ -260,9 +263,9 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     //Top-Right corner
                     //y = a*x + b
                     var posOfDiagonal = -slopeOfDiagonals * touchPositionX + screenHeight;
-                    if(touchPositionY < posOfDiagonal && (lastMove === SNAKE_DIRECTIONS.LEFT || lastMove === SNAKE_DIRECTIONS.RIGHT || snakeLength === 1)){
+                    if(touchPositionY < posOfDiagonal && lastMoveHorizontal){
                         moveQueue.unshift(SNAKE_DIRECTIONS.UP);
-                    } else if (touchPositionY > posOfDiagonal && (lastMove === SNAKE_DIRECTIONS.UP || lastMove === SNAKE_DIRECTIONS.DOWN || snakeLength === 1)){
+                    } else if (touchPositionY > posOfDiagonal && lastMoveVertical){
                         moveQueue.unshift(SNAKE_DIRECTIONS.RIGHT);
                     }
                 }
@@ -270,9 +273,9 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     //Bottom-Left corner
                     //y = a*x + b
                     var posOfDiagonal = -slopeOfDiagonals * touchPositionX + screenHeight;
-                    if(touchPositionY > posOfDiagonal && (lastMove === SNAKE_DIRECTIONS.UP || lastMove === SNAKE_DIRECTIONS.DOWN || snakeLength === 1)){
+                    if(touchPositionY < posOfDiagonal && lastMoveVertical){
                         moveQueue.unshift(SNAKE_DIRECTIONS.LEFT);
-                    } else if (touchPositionY < posOfDiagonal && (lastMove === SNAKE_DIRECTIONS.LEFT || lastMove === SNAKE_DIRECTIONS.RIGHT || snakeLength === 1)){
+                    } else if (touchPositionY > posOfDiagonal && lastMoveHorizontal){
                         moveQueue.unshift(SNAKE_DIRECTIONS.DOWN);
                     }
                 }
@@ -280,9 +283,9 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                     //Bottom-Right corner
                     //y = a*x + b
                     var posOfDiagonal = slopeOfDiagonals * touchPositionX + 0;
-                    if (touchPositionY < posOfDiagonal && (lastMove === SNAKE_DIRECTIONS.UP || lastMove === SNAKE_DIRECTIONS.DOWN || snakeLength === 1)){
+                    if (touchPositionY < posOfDiagonal && lastMoveVertical){
                         moveQueue.unshift(SNAKE_DIRECTIONS.RIGHT);
-                    } else if (touchPositionY > posOfDiagonal && (lastMove === SNAKE_DIRECTIONS.LEFT || lastMove === SNAKE_DIRECTIONS.RIGHT || snakeLength === 1)){
+                    } else if (touchPositionY > posOfDiagonal && lastMoveHorizontal){
                         moveQueue.unshift(SNAKE_DIRECTIONS.DOWN);
                     }
                 }
@@ -1127,7 +1130,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                             mySnake.handleDeviceTouch(evt);
                         }
                     }
-                    
+
                     return false;
                 };
 
