@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="efbe057a-091b-47cb-b970-d1be54d585da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/snake.js" afterPath="$PROJECT_DIR$/js/snake.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/utilities.js" afterPath="$PROJECT_DIR$/js/utilities.js" />
-    </list>
+    <list default="true" id="efbe057a-091b-47cb-b970-d1be54d585da" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,10 +15,10 @@
       <file leaf-file-name="snake.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/snake.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="588" column="16" lean-forward="false" selection-start-line="588" selection-start-column="16" selection-end-line="588" selection-end-column="16" />
+            <state relative-caret-position="386">
+              <caret line="242" column="26" lean-forward="false" selection-start-line="242" selection-start-column="20" selection-end-line="242" selection-end-column="26" />
               <folding>
-                <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+                <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
               </folding>
             </state>
           </provider>
@@ -705,12 +701,12 @@
       <workItem from="1500318427529" duration="10482000" />
       <workItem from="1500549958906" duration="657000" />
       <workItem from="1500572094331" duration="11467000" />
-      <workItem from="1500690875654" duration="3734000" />
+      <workItem from="1500690875654" duration="4634000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54128000" />
+    <option name="totallyTimeSpent" value="55028000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -764,7 +760,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
@@ -790,7 +786,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
@@ -816,7 +812,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
@@ -842,7 +838,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
@@ -860,7 +856,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
@@ -878,7 +874,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
@@ -896,7 +892,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
@@ -929,7 +925,7 @@
         <state relative-caret-position="26837">
           <caret line="1052" column="57" lean-forward="false" selection-start-line="1052" selection-start-column="57" selection-end-line="1052" selection-end-column="57" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
@@ -939,25 +935,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="54" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/snake.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
@@ -975,7 +953,25 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="54" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/snake.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1028,10 +1024,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/snake.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="588" column="16" lean-forward="false" selection-start-line="588" selection-start-column="16" selection-end-line="588" selection-end-column="16" />
+        <state relative-caret-position="386">
+          <caret line="242" column="26" lean-forward="false" selection-start-line="242" selection-start-column="20" selection-end-line="242" selection-end-column="26" />
           <folding>
-            <marker date="1500694148695" expanded="true" signature="25304:25317" ph="..." />
+            <marker date="1500699901961" expanded="true" signature="25304:25317" ph="..." />
           </folding>
         </state>
       </provider>
