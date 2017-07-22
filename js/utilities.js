@@ -79,3 +79,11 @@ UTILS.removeEventListener = (function () {
         };
     }
 })();
+
+
+/**
+ * @module Snake
+ * @class SNAKE
+ */
+
+var SNAKE = SNAKE || {};
