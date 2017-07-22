@@ -243,16 +243,16 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 var touchX = touchEvent.touches[0].clientX;
                 var touchY = touchEvent.touches[0].clientY;
 
-                if (touchX < getClientWidth() * 0.25 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN || snakeLength === 1)){
+                if (touchX < SNAKE.getClientWidth() * 0.25 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN || snakeLength === 1)){
                     moveQueue.unshift(SNAKE_DIRECTION_LEFT);
                 }
-                else if (touchX > getClientWidth() * 0.75 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN || snakeLength === 1)){
+                else if (touchX > SNAKE.getClientWidth() * 0.75 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN || snakeLength === 1)){
                     moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
                 }
-                else if (touchY < getClientHeight() * 0.3 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT || snakeLength === 1)){
+                else if (touchY < SNAKE.getClientHeight() * 0.3 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT || snakeLength === 1)){
                     moveQueue.unshift(SNAKE_DIRECTION_UP);
                 }
-                else if (touchY > getClientHeight() * 0.6 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT || snakeLength === 1)){
+                else if (touchY > SNAKE.getClientHeight() * 0.6 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT || snakeLength === 1)){
                     moveQueue.unshift(SNAKE_DIRECTION_DOWN);
                 }
 
