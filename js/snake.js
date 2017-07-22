@@ -74,7 +74,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 myId = instanceNumber++,
                 growthIncr = 5,
                 moveQueue = [], // a queue that holds the next moves of the snake
-                currentDirection = SNAKE_DIRECTION_RIGHT,
+                currentDirection = SNAKE_DIRECTIONS.RIGHT,
                 columnShift = [0, 1, 0, -1],
                 rowShift = [-1, 0, 1, 0],
                 xPosShift = [],
@@ -162,26 +162,26 @@ SNAKE.Snake = SNAKE.Snake || (function () {
 
                     case 37:
                     case 65:
-                        if (lastMove !== SNAKE_DIRECTION_RIGHT || snakeLength === 1) {
-                            moveQueue.unshift(SNAKE_DIRECTION_LEFT);
+                        if (lastMove !== SNAKE_DIRECTIONS.RIGHT || snakeLength === 1) {
+                            moveQueue.unshift(SNAKE_DIRECTIONS.LEFT);
                         }
                         break;
                     case 38:
                     case 87:
-                        if (lastMove !== SNAKE_DIRECTION_DOWN || snakeLength === 1) {
-                            moveQueue.unshift(SNAKE_DIRECTION_UP);
+                        if (lastMove !== SNAKE_DIRECTIONS.DOWN || snakeLength === 1) {
+                            moveQueue.unshift(SNAKE_DIRECTIONS.UP);
                         }
                         break;
                     case 39:
                     case 68:
-                        if (lastMove !== SNAKE_DIRECTION_LEFT || snakeLength === 1) {
-                            moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
+                        if (lastMove !== SNAKE_DIRECTIONS.LEFT || snakeLength === 1) {
+                            moveQueue.unshift(SNAKE_DIRECTIONS.RIGHT);
                         }
                         break;
                     case 40:
                     case 83:
-                        if (lastMove !== SNAKE_DIRECTION_UP || snakeLength === 1) {
-                            moveQueue.unshift(SNAKE_DIRECTION_DOWN);
+                        if (lastMove !== SNAKE_DIRECTIONS.UP || snakeLength === 1) {
+                            moveQueue.unshift(SNAKE_DIRECTIONS.DOWN);
                         }
                         break;
                 }
@@ -204,22 +204,22 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 if (absOrientationX >= 2 || absOrientationY >= 2){
                     if (absOrientationX > absOrientationY){
                         // Up/Down movement
-                        if (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN) {
+                        if (lastMove === SNAKE_DIRECTIONS.UP || lastMove === SNAKE_DIRECTIONS.DOWN) {
                             if (orientationX > 0) {
-                                moveQueue.unshift(SNAKE_DIRECTION_LEFT);
+                                moveQueue.unshift(SNAKE_DIRECTIONS.LEFT);
                             } else {
-                                moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
+                                moveQueue.unshift(SNAKE_DIRECTIONS.RIGHT);
                             }
                         }
                     }
                     else {
                         // Left/Right movement
-                        if (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT) {
+                        if (lastMove === SNAKE_DIRECTIONS.LEFT || lastMove === SNAKE_DIRECTIONS.RIGHT) {
                             if (orientationY > 0) {
-                                moveQueue.unshift(SNAKE_DIRECTION_DOWN);
+                                moveQueue.unshift(SNAKE_DIRECTIONS.DOWN);
                             }
                             else{
-                                moveQueue.unshift(SNAKE_DIRECTION_UP);
+                                moveQueue.unshift(SNAKE_DIRECTIONS.UP);
                             }
                         }
                     }
@@ -243,17 +243,17 @@ SNAKE.Snake = SNAKE.Snake || (function () {
                 var touchX = touchEvent.touches[0].clientX;
                 var touchY = touchEvent.touches[0].clientY;
 
-                if (touchX < UTILS.getClientWidth() * 0.25 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN || snakeLength === 1)){
-                    moveQueue.unshift(SNAKE_DIRECTION_LEFT);
+                if (touchX < UTILS.getClientWidth() * 0.25 && (lastMove === SNAKE_DIRECTIONS.UP || lastMove === SNAKE_DIRECTIONS.DOWN || snakeLength === 1)){
+                    moveQueue.unshift(SNAKE_DIRECTIONS.LEFT);
                 }
-                else if (touchX > UTILS.getClientWidth() * 0.75 && (lastMove === SNAKE_DIRECTION_UP || lastMove === SNAKE_DIRECTION_DOWN || snakeLength === 1)){
-                    moveQueue.unshift(SNAKE_DIRECTION_RIGHT);
+                else if (touchX > UTILS.getClientWidth() * 0.75 && (lastMove === SNAKE_DIRECTIONS.UP || lastMove === SNAKE_DIRECTIONS.DOWN || snakeLength === 1)){
+                    moveQueue.unshift(SNAKE_DIRECTIONS.RIGHT);
                 }
-                else if (touchY < UTILS.getClientHeight() * 0.3 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT || snakeLength === 1)){
-                    moveQueue.unshift(SNAKE_DIRECTION_UP);
+                else if (touchY < UTILS.getClientHeight() * 0.3 && (lastMove === SNAKE_DIRECTIONS.LEFT || lastMove === SNAKE_DIRECTIONS.RIGHT || snakeLength === 1)){
+                    moveQueue.unshift(SNAKE_DIRECTIONS.UP);
                 }
-                else if (touchY > UTILS.getClientHeight() * 0.6 && (lastMove === SNAKE_DIRECTION_LEFT || lastMove === SNAKE_DIRECTION_RIGHT || snakeLength === 1)){
-                    moveQueue.unshift(SNAKE_DIRECTION_DOWN);
+                else if (touchY > UTILS.getClientHeight() * 0.6 && (lastMove === SNAKE_DIRECTIONS.LEFT || lastMove === SNAKE_DIRECTIONS.RIGHT || snakeLength === 1)){
+                    moveQueue.unshift(SNAKE_DIRECTIONS.DOWN);
                 }
 
             };
@@ -587,12 +587,12 @@ SNAKE.Board = SNAKE.Board || (function () {
                 GRID_FOOD_VALUE = -1, // the value of a spot on the board that represents snake food, MUST BE NEGATIVE
                 myFood,
                 mySnake,
-                boardState = BOARD_STATE_GAME_STARTING,
+                boardState = BOARD_STATES.STARTING,
                 myKeyListener,
                 myDeviceOrientationListener,
                 myTouchListener,
                 isPaused = false,//note: both the board and the snake can be paused
-                selectedSensor = SENSOR_KEYBOARD,
+                selectedSensor = SENSORS.KEYBOARD,
                 // Board components
                 elmContainer, elmPlayingField, elmAboutPanel, elmLengthPanel, elmWelcome, elmTryAgain, elmPauseScreen;
 
@@ -675,12 +675,12 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 welcomeTxt.innerHTML = "JavaScript Snake<p></p>Use the <strong>arrow keys</strong> on your keyboard to play the game. " + fullScreenText + "<p></p>" +
 				"<select id='chosenSnakeSpeed'><option id='Easy' value='100' selected>Easy</option> <option id='Medium' value='75'>Medium</option> <option id='Difficult' value='50'>Difficult</option></select> <br /><br />";
-				
+
 				var highScoreTxt = document.createElement("div");
                 highScoreTxt.innerHTML = "<br /><button id='high-score'>Get your current high score for this game.</button>";
 
                 var sensorTxt = document.createElement("div");
-                sensorTxt.innerHTML = "<select id='chosenSensor'><option value='" + SENSOR_KEYBOARD + "'>Keyboard</option><option value='" + SENSOR_ACCELEROMETER + "'>Accelerometer</option><option value='" + SENSOR_TOUCH_SCREEN + "'>Touch Screen</option></select>"
+                sensorTxt.innerHTML = "<select id='chosenSensor'><option value='" + SENSORS.KEYBOARD + "'>Keyboard</option><option value='" + SENSORS.ACCELEROMETER + "'>Accelerometer</option><option value='" + SENSORS.TOUCH_SCREEN + "'>Touch Screen</option></select>"
 
 
                 var welcomeStart = document.createElement("button");
@@ -693,7 +693,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                     var sensorSelect = document.getElementById("chosenSensor");
                     me.setSensorListeners(sensorSelect.options[sensorSelect.selectedIndex].value);
 
-                    me.setBoardState(BOARD_STATE_GAME_STARTING);
+                    me.setBoardState(BOARD_STATES.STARTING);
                     me.getBoardContainer().focus();
                 };
 
@@ -723,18 +723,18 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                 var tryAgainTxt = document.createElement("div");
                 tryAgainTxt.innerHTML = "JavaScript Snake<p></p>You died :(.<p></p>";
-				
+
 				var modeSpeedTxt = document.createElement("div");
                 modeSpeedTxt.innerHTML = "<select onchange='getModeTryAgain()' id='chosenSnakeSpeedTryAgain'><option id='EasyTry' value='100'>Easy</option> <option id='MediumTry' value='75'>Medium</option> <option id='DifficultTry' value='50'>Difficult</option></select> <br /><br />";;
 
                 var sensorTxt = document.createElement("div");
-                sensorTxt.innerHTML = "<select id='chosenSensorRetry'><option value='" + SENSOR_KEYBOARD + "'>Keyboard</option><option value='" + SENSOR_ACCELEROMETER + "'>Accelerometer</option><option value='" + SENSOR_TOUCH_SCREEN + "'>Touch Screen</option></select>"
+                sensorTxt.innerHTML = "<select id='chosenSensorRetry'><option value='" + SENSORS.KEYBOARD + "'>Keyboard</option><option value='" + SENSORS.ACCELEROMETER + "'>Accelerometer</option><option value='" + SENSORS.TOUCH_SCREEN + "'>Touch Screen</option></select>"
 
                 var tryAgainStart = document.createElement("button");
-                tryAgainStart.appendChild(document.createTextNode("Play Again?"));	
+                tryAgainStart.appendChild(document.createTextNode("Play Again?"));
 
 				var highScoreTxt = document.createElement("div");
-                highScoreTxt.innerHTML = "<br /><button onclick='getHighScoreTryAgain()' id='high-score-try'>Get your current high score for this game.</button>";				
+                highScoreTxt.innerHTML = "<br /><button onclick='getHighScoreTryAgain()' id='high-score-try'>Get your current high score for this game.</button>";
 
                 var reloadGame = function () {
                     tmpElm.style.display = "none";
@@ -743,12 +743,12 @@ SNAKE.Board = SNAKE.Board || (function () {
                     me.setSensorListeners(sensorSelect.options[sensorSelect.selectedIndex].value);
 
                     me.resetBoard();
-                    me.setBoardState(BOARD_STATE_GAME_STARTING);
+                    me.setBoardState(BOARD_STATES.STARTING);
                     me.getBoardContainer().focus();
                 };
 
                 var kbTryAgainShortcut = function (evt) {
-                    if (me.getBoardState() !== BOARD_STATE_GAME_INITIAL || tmpElm.style.display !== "block") {
+                    if (me.getBoardState() !== BOARD_STATES.INITIAL || tmpElm.style.display !== "block") {
                         return;
                     }
                     if (!evt) var evt = window.event;
@@ -777,14 +777,14 @@ SNAKE.Board = SNAKE.Board || (function () {
 
             me.setSensorListeners = function(sensor){
 
-                if (sensor == SENSOR_KEYBOARD){
-                    selectedSensor = SENSOR_KEYBOARD;
+                if (sensor == SENSORS.KEYBOARD){
+                    selectedSensor = SENSORS.KEYBOARD;
                 }
-                else if (sensor == SENSOR_ACCELEROMETER){
-                    selectedSensor = SENSOR_ACCELEROMETER;
+                else if (sensor == SENSORS.ACCELEROMETER){
+                    selectedSensor = SENSORS.ACCELEROMETER;
                 }
-                else if (sensor == SENSOR_TOUCH_SCREEN){
-                    selectedSensor = SENSOR_TOUCH_SCREEN;
+                else if (sensor == SENSORS.TOUCH_SCREEN){
+                    selectedSensor = SENSORS.TOUCH_SCREEN;
                 }
             };
 
@@ -800,24 +800,24 @@ SNAKE.Board = SNAKE.Board || (function () {
             me.getPaused = function () {
                 return isPaused;
             };
-			
+
 			getModeTryAgain = function() {
-			
+
 				var comboBoxSpeed = document.getElementById("chosenSnakeSpeedTryAgain");
 				var speed = comboBoxSpeed.options[comboBoxSpeed.selectedIndex].value;
 				snakeSpeed = speed;
 			};
-			
+
 			setTryAgainMode = function(snakeSpeed) {
-				
+
 				if(snakeSpeed == 100)
 					document.getElementById("EasyTry").selected = true;
 				else if(snakeSpeed == 75)
 					document.getElementById("MediumTry").selected = true;
 				else if(snakeSpeed == 50)
-					document.getElementById("DifficultTry").selected = true;				
+					document.getElementById("DifficultTry").selected = true;
 			}
-			
+
 			getHighScoreTryAgain = function () {
 					if (localStorage.jsSnakeHighScore == undefined) alert('You have not played this game yet!');
 					else
@@ -838,14 +838,14 @@ SNAKE.Board = SNAKE.Board || (function () {
                 mySnake.rebirth();
             };
             /**
-             * Gets the current state of the playing board. Use BOARD_STATE_GAME_INITIAL, BOARD_STATE_GAME_STARTING and BOARD_STATE_GAME_STARTED.
+             * Gets the current state of the playing board. Use BOARD_STATES.INITIAL, BOARD_STATES.STARTING and BOARD_STATES.STARTED.
              * @return {Number} The state of the board.
              */
             me.getBoardState = function () {
                 return boardState;
             };
             /**
-             * Sets the current state of the playing board. Use BOARD_STATE_GAME_INITIAL, BOARD_STATE_GAME_STARTING and BOARD_STATE_GAME_STARTED.
+             * Sets the current state of the playing board. Use BOARD_STATES.INITIAL, BOARD_STATES.STARTING and BOARD_STATES.STARTED.
              * @method setBoardState
              * @param {Number} state The state of the board.
              */
@@ -918,8 +918,8 @@ SNAKE.Board = SNAKE.Board || (function () {
                 if (config.fullScreen === true) {
                     cTop = 0;
                     cLeft = 0;
-                    cWidth = getClientWidth() - 5;
-                    cHeight = getClientHeight() - 5;
+                    cWidth = UTILS.getClientWidth() - 5;
+                    cHeight = UTILS.getClientHeight() - 5;
                     document.body.style.backgroundColor = "#FC5454";
                 } else {
                     cTop = config.top;
@@ -978,7 +978,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 }
 
                 myFood.randomlyPlaceFood();
-				
+
 				function getHighScore() {
 					document.getElementById('high-score').addEventListener('click', function () {
 						if (localStorage.jsSnakeHighScore == undefined) alert('You have not played this game yet!');
@@ -987,7 +987,7 @@ SNAKE.Board = SNAKE.Board || (function () {
 					});
 				}
 				getHighScore();
-				
+
 				// setup event listeners
                 function getMode(mode) {
 					if(typeof snakeSpeed == 'undefined') {
@@ -1007,13 +1007,13 @@ SNAKE.Board = SNAKE.Board || (function () {
                 getMode('chosenSnakeSpeed');
 
                 myKeyListener = function (evt) {
-                    if (selectedSensor !== SENSOR_KEYBOARD)
+                    if (selectedSensor !== SENSORS.KEYBOARD)
                         return;
 
                     if (!evt) var evt = window.event;
                     var keyNum = (evt.which) ? evt.which : evt.keyCode;
 
-                    if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
+                    if (me.getBoardState() === BOARD_STATES.STARTING) {
                         if (!(keyNum >= 37 && keyNum <= 40) && !(keyNum === 87 || keyNum === 65 || keyNum === 83 || keyNum === 68)) {
                             return;
                         } // if not an arrow key, leave
@@ -1026,7 +1026,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                             var keyNum = (evt.which) ? evt.which : evt.keyCode;
 
                             //32 = Enter
-                            if (keyNum === 32 && me.getBoardState() !== BOARD_STATE_GAME_INITIAL) {
+                            if (keyNum === 32 && me.getBoardState() !== BOARD_STATES.INITIAL) {
                                 me.setPaused(!me.getPaused());
                             }
 
@@ -1045,7 +1045,7 @@ SNAKE.Board = SNAKE.Board || (function () {
 
                         mySnake.rebirth();
                         mySnake.handleArrowKeys(keyNum);
-                        me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
+                        me.setBoardState(BOARD_STATES.STARTED); // start the game!
                         mySnake.go();
                     }
 
@@ -1060,15 +1060,15 @@ SNAKE.Board = SNAKE.Board || (function () {
                 };
 
                 myDeviceOrientationListener = function(evt) {
-                    if (selectedSensor !== SENSOR_ACCELEROMETER)
+                    if (selectedSensor !== SENSORS.ACCELEROMETER)
                         return;
 
-                    if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
+                    if (me.getBoardState() === BOARD_STATES.STARTING) {
                         UTILS.removeEventListener(elmContainer, "devicemotion",  mySnake.handleDeviceOrientation, false);
                         var orientationX = evt.accelerationIncludingGravity.x;
                         var orientationY = evt.accelerationIncludingGravity.y;
                         if (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3){
-                            me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
+                            me.setBoardState(BOARD_STATES.STARTED); // start the game!
                             mySnake.go();
                             UTILS.addEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
                         }
@@ -1086,12 +1086,12 @@ SNAKE.Board = SNAKE.Board || (function () {
                 };
 
                 myTouchListener = function(evt) {
-                    if (selectedSensor !== SENSOR_TOUCH_SCREEN)
+                    if (selectedSensor !== SENSORS.TOUCH_SCREEN)
                         return;
 
                     if(evt.touches.length == 1){
-                        if (me.getBoardState() === BOARD_STATE_GAME_STARTING) {
-                            me.setBoardState(BOARD_STATE_GAME_STARTED); // start the game!
+                        if (me.getBoardState() === BOARD_STATES.STARTING) {
+                            me.setBoardState(BOARD_STATES.STARTED); // start the game!
                             mySnake.go();
                             UTILS.addEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
                             mySnake.handleDeviceTouch(evt);
@@ -1134,7 +1134,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 elmContainer.appendChild(elmTryAgain);
                 elmTryAgain.style.zIndex = index;
                 elmTryAgain.style.display = "block";
-                me.setBoardState(BOARD_STATE_GAME_INITIAL);
+                me.setBoardState(BOARD_STATES.INITIAL);
             };
 
             // ---------------------------------------------------------------------
@@ -1153,7 +1153,7 @@ SNAKE.Board = SNAKE.Board || (function () {
                 }, false);
             }
 
-            me.setBoardState(BOARD_STATE_GAME_INITIAL);
+            me.setBoardState(BOARD_STATES.INITIAL);
 
             if (config.boardContainer) {
                 me.setBoardContainer(config.boardContainer);
