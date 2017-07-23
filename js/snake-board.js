@@ -291,8 +291,6 @@ SNAKE.Board = SNAKE.Board || (function () {
             UTILS.removeEventListener(elmContainer, "keydown", myKeyListener, false);
             UTILS.removeEventListener(window, "devicemotion", myDeviceOrientationListener, false);
             UTILS.removeEventListener(elmContainer, "touchstart", myTouchListener, false);
-            UTILS.removeEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
-            UTILS.removeEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
 
             mySnake.reset();
             elmLengthPanel.innerHTML = "Length: 1";
@@ -526,7 +524,6 @@ SNAKE.Board = SNAKE.Board || (function () {
                     return;
 
                 if (me.getBoardState() === BOARD_STATES.STARTING) {
-                    UTILS.removeEventListener(elmContainer, "devicemotion",  mySnake.handleDeviceOrientation, false);
                     var orientationX = evt.accelerationIncludingGravity.x;
                     var orientationY = evt.accelerationIncludingGravity.y;
                     if (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3){

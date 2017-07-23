@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="efbe057a-091b-47cb-b970-d1be54d585da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/snake-board.js" afterPath="$PROJECT_DIR$/js/snake-board.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/snake.js" afterPath="$PROJECT_DIR$/js/snake.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -78,10 +77,10 @@
       <file leaf-file-name="snake-board.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/snake-board.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="508" column="35" lean-forward="true" selection-start-line="508" selection-start-column="35" selection-end-line="508" selection-end-column="35" />
+            <state relative-caret-position="80">
+              <caret line="525" column="67" lean-forward="false" selection-start-line="525" selection-start-column="67" selection-end-line="525" selection-end-column="67" />
               <folding>
-                <marker date="1500839460912" expanded="true" signature="3262:3275" ph="..." />
+                <marker date="1500840324419" expanded="true" signature="3262:3275" ph="..." />
               </folding>
             </state>
           </provider>
@@ -98,7 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>handleDeviceOrientation</find>
       <find>myDeviceOrientationListener</find>
       <find>&gt;&gt;</find>
       <find>&gt;&gt;#</find>
@@ -128,6 +126,7 @@
       <find>fullScreenText</find>
       <find>myTouchListener</find>
       <find>myKeyListener</find>
+      <find>removeEvent</find>
     </findStrings>
     <replaceStrings>
       <replace>UTILS.removeEventListener</replace>
@@ -154,8 +153,8 @@
         <option value="$PROJECT_DIR$/js/utilities.js" />
         <option value="$PROJECT_DIR$/js/snake-food.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/snake-board.js" />
         <option value="$PROJECT_DIR$/js/snake.js" />
+        <option value="$PROJECT_DIR$/js/snake-board.js" />
       </list>
     </option>
   </component>
@@ -740,12 +739,12 @@
       <workItem from="1500690875654" duration="6810000" />
       <workItem from="1500703045298" duration="232000" />
       <workItem from="1500836478843" duration="604000" />
-      <workItem from="1500837938565" duration="2331000" />
+      <workItem from="1500837938565" duration="2386000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60371000" />
+    <option name="totallyTimeSpent" value="60426000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -831,7 +830,7 @@
         <state relative-caret-position="2227">
           <caret line="131" column="59" lean-forward="false" selection-start-line="131" selection-start-column="59" selection-end-line="131" selection-end-column="59" />
           <folding>
-            <marker date="1500839460912" expanded="true" signature="3262:3275" ph="..." />
+            <marker date="1500840324419" expanded="true" signature="3262:3275" ph="..." />
           </folding>
         </state>
       </provider>
@@ -881,7 +880,7 @@
         <state relative-caret-position="2227">
           <caret line="131" column="59" lean-forward="false" selection-start-line="131" selection-start-column="59" selection-end-line="131" selection-end-column="59" />
           <folding>
-            <marker date="1500839460912" expanded="true" signature="3262:3275" ph="..." />
+            <marker date="1500840324419" expanded="true" signature="3262:3275" ph="..." />
           </folding>
         </state>
       </provider>
@@ -899,7 +898,7 @@
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
-            <marker date="1500839460912" expanded="true" signature="3262:3275" ph="..." />
+            <marker date="1500840324419" expanded="true" signature="3262:3275" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1193,10 +1192,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/snake-board.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="508" column="35" lean-forward="true" selection-start-line="508" selection-start-column="35" selection-end-line="508" selection-end-column="35" />
+        <state relative-caret-position="80">
+          <caret line="525" column="67" lean-forward="false" selection-start-line="525" selection-start-column="67" selection-end-line="525" selection-end-column="67" />
           <folding>
-            <marker date="1500839460912" expanded="true" signature="3262:3275" ph="..." />
+            <marker date="1500840324419" expanded="true" signature="3262:3275" ph="..." />
           </folding>
         </state>
       </provider>
