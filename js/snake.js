@@ -411,7 +411,7 @@ SNAKE.Snake = SNAKE.Snake || (function () {
 
             isDead = true;
             playingBoard.handleDeath();
-            moveQueue.length = 0;
+            moveQueue = [];
         };
 
         /**
