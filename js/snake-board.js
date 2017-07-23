@@ -290,10 +290,11 @@ SNAKE.Board = SNAKE.Board || (function () {
         me.resetBoard = function () {
             UTILS.removeEventListener(elmContainer, "keydown", myKeyListener, false);
             UTILS.removeEventListener(window, "devicemotion", myDeviceOrientationListener, false);
-            UTILS.removeEventListener(window, "touchstart", myTouchListener, false);
-            //UTILS.removeEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
-            //UTILS.removeEventListener(elmContainer, "keydown", myKeyListener, false);
-            //UTILS.removeEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
+            UTILS.removeEventListener(elmContainer, "touchstart", myTouchListener, false);
+            UTILS.removeEventListener(elmContainer, "keydown", myKeyListener, false);
+            UTILS.removeEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
+            UTILS.removeEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
+
             mySnake.reset();
             elmLengthPanel.innerHTML = "Length: 1";
             me.setupPlayingField();
