@@ -179,6 +179,10 @@ SNAKE.Snake = SNAKE.Snake || (function () {
             }
         };
 
+        /**
+         * Changes the direction of the snake depending on the direction of the device.
+         * @param directionEvent
+         */
         me.handleDeviceOrientation = function(directionEvent){
             if (isDead || isPaused) {
                 return;
@@ -219,7 +223,20 @@ SNAKE.Snake = SNAKE.Snake || (function () {
             directionEvent.preventDefault();
         };
 
-
+        /**
+         * This moves the snakes depending on which region separated by both diagonals of the rectangle (the screen) the touches is.
+         * This is the logic behind the algorithm:
+         * 1 - Checks in which quadrant of the screen the touches is located (Top-Left, Top-Right, Bottom-Left or Bottom-Right)
+         * 2- Gets the Y' position on the diagonal using the formula a*x + b, where a is the slope, x is the x position of the touch,
+         *     and B is the origin of the slope (either 0 or the height of the screen)
+         *     Here are the diagonals possible:
+         *   - If the quadrant is Top-Left, the diagonal goes from top-left to the center of the screen. The slope is positive and starts at 0.
+         *   - If the quadrant is Top-Right, the diagonal goes from the center to the top-right of the screen. The slope is negative and starts at the height of the screen.
+         *   - If the quadrant is Bottom-Left, the diagonal goes from the bottom-left of the screen to the center. The slope is negative and starts at the height of the screen.
+         *   - If the quadrant is Bottom-Right, the diagonal goes from the center to the bottom-right of the screen. The slope is positive and starts at 0.
+         * 3- Determines the direction of the snake depending if the y position of the touch is above or below Y' (Y' lies on the diagonal)
+         * @param touchEvent
+         */
         me.handleDeviceTouch = function(touchEvent) {
 
             if (isDead || isPaused) {

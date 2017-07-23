@@ -291,7 +291,6 @@ SNAKE.Board = SNAKE.Board || (function () {
             UTILS.removeEventListener(elmContainer, "keydown", myKeyListener, false);
             UTILS.removeEventListener(window, "devicemotion", myDeviceOrientationListener, false);
             UTILS.removeEventListener(elmContainer, "touchstart", myTouchListener, false);
-            UTILS.removeEventListener(elmContainer, "keydown", myKeyListener, false);
             UTILS.removeEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
             UTILS.removeEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
 
@@ -533,9 +532,11 @@ SNAKE.Board = SNAKE.Board || (function () {
                     if (Math.abs(orientationX) > 3 || Math.abs(orientationY) > 3){
                         me.setBoardState(BOARD_STATES.STARTED); // start the game!
                         mySnake.go();
-                        UTILS.addEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
+                        mySnake.handleDeviceOrientation(evt);
                     }
 
+                }else if (me.getBoardState() === BOARD_STATES.STARTED){
+                    mySnake.handleDeviceOrientation(evt);
                 }
 
                 evt.cancelBubble = true;
@@ -556,7 +557,8 @@ SNAKE.Board = SNAKE.Board || (function () {
                     if (me.getBoardState() === BOARD_STATES.STARTING) {
                         me.setBoardState(BOARD_STATES.STARTED); // start the game!
                         mySnake.go();
-                        UTILS.addEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
+                        mySnake.handleDeviceTouch(evt);
+                    }else if(me.getBoardState() === BOARD_STATES.STARTED) {
                         mySnake.handleDeviceTouch(evt);
                     }
                 }
