@@ -277,7 +277,8 @@ SNAKE.Board = SNAKE.Board || (function () {
         }
 
         getHighScoreTryAgain = function () {
-            if (localStorage.jsSnakeHighScore == undefined) alert('You have not played this game yet!');
+            if (localStorage.jsSnakeHighScore == undefined)
+                alert('You have not played this game yet!');
             else
                 alert('Your current high score is ' + localStorage.jsSnakeHighScore + '.');
         }
@@ -289,7 +290,10 @@ SNAKE.Board = SNAKE.Board || (function () {
         me.resetBoard = function () {
             UTILS.removeEventListener(elmContainer, "keydown", myKeyListener, false);
             UTILS.removeEventListener(window, "devicemotion", myDeviceOrientationListener, false);
-            UTILS.removeEventListener(window, "devicemotion", myTouchListener, false);
+            UTILS.removeEventListener(window, "touchstart", myTouchListener, false);
+            //UTILS.removeEventListener(window, "devicemotion",  mySnake.handleDeviceOrientation, false);
+            //UTILS.removeEventListener(elmContainer, "keydown", myKeyListener, false);
+            //UTILS.removeEventListener(elmContainer, "touchstart",  mySnake.handleDeviceTouch, false);
             mySnake.reset();
             elmLengthPanel.innerHTML = "Length: 1";
             me.setupPlayingField();
