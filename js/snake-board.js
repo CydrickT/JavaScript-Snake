@@ -138,7 +138,7 @@ SNAKE.Board = SNAKE.Board || (function () {
             highScoreTxt.innerHTML = "<br /><button id='high-score'>Get your current high score for this game.</button>";
 
             var sensorTxt = document.createElement("div");
-            sensorTxt.innerHTML = "<select id='chosenSensor'><option value='" + SENSORS.KEYBOARD + "'>Keyboard</option><option value='" + SENSORS.ACCELEROMETER + "'>Accelerometer</option><option value='" + SENSORS.TOUCH_SCREEN + "'>Touch Screen</option></select><br />"
+            sensorTxt.innerHTML = "<select id='chosenSensor'><option value='" + SENSORS.KEYBOARD + "'>Keyboard</option><option value='" + SENSORS.ACCELEROMETER + "'>Accelerometer</option><option value='" + SENSORS.TOUCH_SCREEN + "'>Touch Screen</option></select><br /><br />"
 
 
             var welcomeStart = document.createElement("button");
@@ -186,7 +186,7 @@ SNAKE.Board = SNAKE.Board || (function () {
             modeSpeedTxt.innerHTML = "<select onchange='getModeTryAgain()' id='chosenSnakeSpeedTryAgain'><option id='EasyTry' value='100'>Easy</option> <option id='MediumTry' value='75'>Medium</option> <option id='DifficultTry' value='50'>Difficult</option></select> <br /><br />";;
 
             var sensorTxt = document.createElement("div");
-            sensorTxt.innerHTML = "<select id='chosenSensorRetry'><option value='" + SENSORS.KEYBOARD + "'>Keyboard</option><option value='" + SENSORS.ACCELEROMETER + "'>Accelerometer</option><option value='" + SENSORS.TOUCH_SCREEN + "'>Touch Screen</option></select><br />"
+            sensorTxt.innerHTML = "<select id='chosenSensorRetry'><option value='" + SENSORS.KEYBOARD + "'>Keyboard</option><option value='" + SENSORS.ACCELEROMETER + "'>Accelerometer</option><option value='" + SENSORS.TOUCH_SCREEN + "'>Touch Screen</option></select><br /><br />"
 
             var tryAgainStart = document.createElement("button");
             tryAgainStart.appendChild(document.createTextNode("Play Again?"));

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efbe057a-091b-47cb-b970-d1be54d585da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/snake-board.js" afterPath="$PROJECT_DIR$/js/snake-board.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,10 +37,10 @@
       <file leaf-file-name="snake-board.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/snake-board.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="829">
-              <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+            <state relative-caret-position="1258">
+              <caret line="188" column="279" lean-forward="false" selection-start-line="188" selection-start-column="279" selection-end-line="188" selection-end-column="279" />
               <folding>
-                <marker date="1501090293325" expanded="true" signature="3262:3275" ph="..." />
+                <marker date="1501090489621" expanded="true" signature="3262:3275" ph="..." />
               </folding>
             </state>
           </provider>
@@ -732,12 +731,12 @@
       <workItem from="1500836478843" duration="604000" />
       <workItem from="1500837938565" duration="2690000" />
       <workItem from="1501036921446" duration="72000" />
-      <workItem from="1501090166294" duration="129000" />
+      <workItem from="1501090166294" duration="341000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61244000" />
+    <option name="totallyTimeSpent" value="61456000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2762" height="1790" extended-state="6" />
@@ -823,7 +822,7 @@
         <state relative-caret-position="2227">
           <caret line="131" column="59" lean-forward="false" selection-start-line="131" selection-start-column="59" selection-end-line="131" selection-end-column="59" />
           <folding>
-            <marker date="1501090293325" expanded="true" signature="3262:3275" ph="..." />
+            <marker date="1501090489621" expanded="true" signature="3262:3275" ph="..." />
           </folding>
         </state>
       </provider>
@@ -873,7 +872,7 @@
         <state relative-caret-position="2227">
           <caret line="131" column="59" lean-forward="false" selection-start-line="131" selection-start-column="59" selection-end-line="131" selection-end-column="59" />
           <folding>
-            <marker date="1501090293325" expanded="true" signature="3262:3275" ph="..." />
+            <marker date="1501090489621" expanded="true" signature="3262:3275" ph="..." />
           </folding>
         </state>
       </provider>
@@ -891,7 +890,7 @@
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
-            <marker date="1501090293325" expanded="true" signature="3262:3275" ph="..." />
+            <marker date="1501090489621" expanded="true" signature="3262:3275" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1185,10 +1184,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/snake-board.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="829">
-          <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+        <state relative-caret-position="1258">
+          <caret line="188" column="279" lean-forward="false" selection-start-line="188" selection-start-column="279" selection-end-line="188" selection-end-column="279" />
           <folding>
-            <marker date="1501090293325" expanded="true" signature="3262:3275" ph="..." />
+            <marker date="1501090489621" expanded="true" signature="3262:3275" ph="..." />
           </folding>
         </state>
       </provider>
